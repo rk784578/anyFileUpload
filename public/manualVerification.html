@@ -1,0 +1,44 @@
+<div ng-controller='NavController' ng:show="navBar">
+  <div ng-include='template.navmenu'></div>
+</div>
+<div class="container">
+  <div class="col-md-11 col-sm-11">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>E-Mail</td>
+            <td>M.Number</td>
+            <td>C.Name</td>
+            <td>Requested Date</td>
+            <td>Status</td>
+            <td>User Limit</td>
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng:repeat="x in unActivedData track by $index">
+            <td>{{x.name}}</td>
+            <td>{{x.userName}}</td>
+            <td>{{x.mobileNumber}}</td>
+            <td>{{x.companyName}}</td>
+            <td>{{x.createdDate | date:'dd-MM-yy'}}</td>
+            <td>{{x.userLimit || '0'}}</td>
+            <td>
+              <button type="button" ng:click="activateOrDiactivate(x,$index)">{{x.state}}</button>
+            </td>
+            <!-- <td>
+              <button class="glyphicon glyphicon-pencil" type="button" ng:click="activate(x,$index)"></button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

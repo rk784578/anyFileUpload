@@ -1,0 +1,349 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background: #c1bdba;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #1ab188;
+  transition: .5s ease;
+}
+a:hover {
+  color: #90b5e5;
+}
+
+.form {
+  background:white;
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+.tab-group {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+.tab-group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.tab-group li a {
+  display: block;
+  text-decoration: none;
+  padding: 15px;
+  background: rgba(160, 179, 176, 0.25);
+  color: #90b5e5;
+  font-size: 20px;
+  float: left;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+  transition: .5s ease;
+}
+.tab-group li a:hover {
+  background: #2276e4;
+  color: #ffffff;
+}
+.tab-group .active a {
+  background: #2276e4;
+  color: #ffffff;
+}
+
+.tab-content > div:last-child {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  color: blue;
+  font-weight: 300;
+  margin: 0 0 40px;
+}
+
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+  /*color:#3B3C3F;*/
+  color: darkblue;
+}
+
+input { 
+    
+  font-size: 1em;
+  border: 0;
+  border-bottom: 1px solid #C0C0C0;
+  font-family: inherit;
+  /*-webkit-appearance: none;*/
+  border-radius: 0;
+  padding: 0 0 5px 0;
+  cursor: text;
+}
+
+input:focus {
+  outline: 0;
+  border-bottom: 1.25px solid #2276e4;
+
+}
+
+label {
+  text-transform: camelcase;
+  letter-spacing: 0.05em;
+  padding-bottom: 10px;
+  font-size: 10px;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+input:placeholder-shown + label {
+  cursor: text;
+  max-width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem) scale(1.5);
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+input:focus::-webkit-input-placeholder {
+  opacity: 1;
+
+}
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the input at all.
+*/
+input:not(:placeholder-shown) + label,
+input:focus + label {
+  transform: translate(0, 0.3rem) scale(1);
+  cursor: pointer;
+  color:#2276e4;
+  transition:.25s ease;
+}
+
+
+
+
+  
+
+
+.top-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.top-row > div {
+  float: left;
+  width: 48%;
+  margin-right: 4%;
+}
+.top-row > div:last-child {
+  margin: 0;
+}
+
+.button {
+  border: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 15px 0;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #2276e4;
+  color: #ffffff;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+}
+.button:hover, .button:focus {
+  background: #2276e4;
+}
+
+.button-block {
+  display: block;
+  width: 100%;
+}
+
+.forgot {
+  padding-top: 50px;
+  text-align: right;
+}
+
+.button1{
+  background-color: #2276e4;
+  border:none;
+  text-align: center;
+  text-decoration: none;
+  color:white;
+  display: inline-block;
+  font-size: 18px;
+  padding:10px;
+  top:50%;
+  left:45%;
+  margin-top: 30px;
+  border-radius: 5px;
+  cursor:pointer;
+  position:relative;
+
+}
+
+.button1:hover{
+background-color: rgb(104, 145, 300);
+}
+
+.top-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.top-row > div {
+  float: left;
+  width: 48%;
+  margin-right: 4%;
+}
+.top-row > div:last-child {
+  margin: 0;
+}
+
+.button {
+  border: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 15px 0;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #1ab188;
+  color: #ffffff;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+}
+.button:hover, .button:focus {
+  background: #179b77;
+}
+
+.button-block {
+  display: block;
+  width: 100%;
+}
+
+.forgot {
+  margin-top: -20px;
+  text-align: right;
+}
+
+
+
+
+
+
+.button1{
+  background-color: #2276e4;
+  border:none;
+  text-align: center;
+  text-decoration: none;
+  color:white;
+  display: inline-block;
+  font-size: 18px;
+  padding:10px;
+  top:50%;
+  left:40%;
+  margin-top: 30px;
+  border-radius: 5px;
+  cursor:pointer;
+  position:relative;
+
+}
+
+.button1:hover{
+background-color: rgb(104, 145, 300);
+}
+
+
+
+
+
+
+
+
+
+
+
+.google-button {
+  height: 40px;
+  border-width: 0;
+  background: white;
+  color: #737373;
+  border-radius: 5px;
+  white-space: nowrap;
+  box-shadow: 1px 2px 0px 1px rgba(0,0,0,0.05);
+  transition-property: background-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  padding: 0;
+}
+.google-button:hover{
+    box-shadow: 1px 5px 7px 1px rgba(0,0,0,0.1);}
+              
+
+ .google-button:active {
+    background-color: #e5e5e5;
+    box-shadow: none;
+    transition-duration: 10ms;
+  }  
+
+    
+.google-button__icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 8px 0 8px 8px;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+}
+
+.google-button__icon--plus {
+  width: 27px;
+}
+
+.google-button__text {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Roboto',arial,sans-serif;
+}
+
+.box2{
+  border-collapse:collapse;
+  margin-left:140px;
+  padding:10px;
+}

@@ -1,0 +1,31 @@
+<div class="form">  
+ <h1>Upload Any File</h1>
+
+ <!-- <ul class="tab-group">
+        <li class="tab"><a href="signUp">Sign Up</a></li>
+        <li class="tab active"><a href="login">Log In</a></li>
+      </ul> -->
+ <form>
+ <p style="color: red;font-size: 11px;">{{userValidationError}}{{Error}}{{successMessage}} &nbsp;&nbsp; <a ng:click="reSend()" ng:show="resendShow">Re-send Verification Link</a></p>
+ <div class="col-md-12">
+  <div class="field">
+    <input type="text" name="email" id="email1" ng-model="userName" ng-change="onSelectUserName()" placeholder=" " required>
+    <label for="email1">Email Address</label>
+  </div>
+     <div class="field">
+    <input type="password" name="password" id="password1" ng-model="password" ng-change="onSelectUserName()" placeholder=" " required>
+    <label for="password1">Password</label>
+  </div>
+</div>
+  
+
+  <p style="text-align: right;" class="forgot" ><a href="#forgotPasswordPage" ng-click="forgotPassword()">Reset Password?</a></p>
+  <button type="submit" value="login" ng-click="login()" class="button1">
+         <b>Login<img src="./icon/postLoader.gif" ng:show="loader"></b>
+  </button>
+  <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p>
+
+          </form>
+
+        </div>
+      
