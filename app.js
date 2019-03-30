@@ -249,6 +249,37 @@ requriedNodeModules.request({
         }
     };
 
+    //url = url + '&query=dateRange:[' + startDate + ' TO ' + endDate + ']' 
+ 
+ // report Data 
+  app.post('/getUploadData', (req, res) => {
+   var db = "uploadanyregisterandlogin/";
+   var date = convertDateToInteger(req.body.fetchdate);
+   console.log(date);
+  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
+              //'_design/logisticsDesign/_search/logisticsRecordsByType?query=logisticsType:\"Import\"&include_docs=true'            
+             db + '_design/uploadAny/_search/fetchBasedOnEmployeeEmail?query=date:[' + date + ' TO ' + date + ']' + '&include_docs=true';
+     console.log(URL);        
+requriedNodeModules.request({
+  uri:URL,
+  method:"GET"
+},(err,response,body)=>{
+   //console.log(body);
+   
+    if (err) {
+     res.send(err); 
+    }
+
+    var rowsObject = JSON.parse(body);
+  console.log(rowsObject);
+  res.send(rowsObject);  
+    
+})
+
+  
+  //res.end();           
+});
+
 // start server on the specified port and binding host
 // This is for local testing  
 app.listen(appEnv.port, '0.0.0.0', function () {

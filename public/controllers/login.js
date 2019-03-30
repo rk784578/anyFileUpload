@@ -40,7 +40,13 @@ mainapp.controller('loginController', ['$scope',
 					//console.log(' ADMIN HOMEPAGE');
 
 				}
+				else if($scope.userName == "uploadAdmin" &&  $scope.password == "admin"){
+					$global.setAdminlogged(true);
+					
+					$location.path('/reports'); 
+				}
 				 else {
+				
 			$scope.loader = true;
 			$http.get('/superAdmin').success(function (res) {
 				//console.log("SUPER ADMIN LOGIN res",res);

@@ -16,12 +16,19 @@ mainapp.controller('manualVerificationController', ['$scope',
       signUpActivation(); 
 
 $scope.unActivedData = [];
+$scope.uploadData = [];
       function signUpActivation(){
           $http.post('/getUnactivatedData').success(function (data) {
           console.log(data);
           for(var i=0;i<data.length;i++){
+            if(data[i].type == "upload"){
+              $scope.uploadData.push(data[i]);
+              console.log("####",$scope.uploadData);
+            }else{
               $scope.unActivedData.push(data[i]);
-          }
+            }
+            }
+          
            
       }).error(function(data) {
           

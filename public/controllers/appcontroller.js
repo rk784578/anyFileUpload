@@ -45,7 +45,11 @@ mainapp.config(function ($routeProvider,$locationProvider) {
                 controller: 'forgotPasswordController',
                 templateUrl: '../forgotPasswordPage.html'
             })             
-            
+         .when('/reports',
+            {
+                controller: 'reportController',
+                templateUrl: '../reports.html'
+            })   
         .otherwise({
             redirectTo: '/login'
         });
@@ -339,5 +343,16 @@ mainapp.controller('NavController', ['$scope', '$global', '$http', function ($sc
 
 
 }]);
+
+mainapp.filter('numberToDate', function () {
+    return function (input) {
+        if (input === null || input === undefined || input === "" || input == 0) {
+            input = "Date--NO";
+        }
+        //Need to convert the date integer into date format yyyy-mm-dd
+        var dateString = '' + input;
+        return dateString.substr(6, 2) + "-" + dateString.substr(4, 2) + "-" + dateString.substr(0, 4);
+    }
+});
 
 
