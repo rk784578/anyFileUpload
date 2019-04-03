@@ -52,8 +52,8 @@ app.get('/*', function (req, res) {
 app.post('/getEmployeeDetails', (req, res) => {
    var db = "uploadanyregisterandlogin";
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-             db+ '/' + "_design/uploadAny/_search/fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body.userName +'\"' + '&include_docs=true';
-      
+             db+ '/' + "_design/uploadAny/_search/fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body._id +'\"' + '&include_docs=true';
+  console.log(URL);    
 requriedNodeModules.request({
   uri:URL,
   method:"GET"
@@ -64,7 +64,8 @@ requriedNodeModules.request({
    // res.send(err);
   }else{
     let parseData = JSON.parse(body);
-    console.log(parseData.total_rows);
+    //console.log(body);
+    console.log("####",parseData.total_rows);
     if(parseData.total_rows ==  0){
       res.send('0');
       console.log('if');
@@ -258,7 +259,7 @@ requriedNodeModules.request({
    console.log(date);
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
               //'_design/logisticsDesign/_search/logisticsRecordsByType?query=logisticsType:\"Import\"&include_docs=true'            
-             db + '_design/uploadAny/_search/fetchBasedOnEmployeeEmail?query=date:[' + date + ' TO ' + date + ']' + '&include_docs=true';
+             db + '_design/uploadAny/_search/fetchBasedOnDate?query=date:[' + date + ' TO ' + date + ']' + '&include_docs=true';
      console.log(URL);        
 requriedNodeModules.request({
   uri:URL,
