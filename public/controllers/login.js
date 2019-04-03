@@ -46,7 +46,7 @@ mainapp.controller('loginController', ['$scope',
 					$location.path('/reports'); 
 				}
 				 else {
-				
+				console.log("else");
 			$scope.loader = true;
 			$http.get('/superAdmin').success(function (res) {
 				//console.log("SUPER ADMIN LOGIN res",res);
@@ -69,9 +69,9 @@ mainapp.controller('loginController', ['$scope',
 			$scope.whiznextLoader = true;
 			
 
-			$http.post('/getEmployeeDetails',{userName:$scope.userName})
+			$http.post('/getEmployeeDetails',{_id:$scope.userName})
 				.success(function (data, status) {
-					//console.log(data.rows[0].doc);
+					console.log(data);
 					$scope.loginData.push(data.rows[0].doc);
 					console.log("DATA", $scope.loginData);
 					/*user validation*/

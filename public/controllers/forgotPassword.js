@@ -108,93 +108,58 @@ mainapp.controller('forgotPasswordController', ['$scope',
 				
 				// saving the new user into DB
 				function saveUser(){
-				
-					 
-					 $scope.Data['password'] = $crmUtilities.encode($scope.rePassword);
-					 console.log("get call user data" ,$scope.Data );
+				      
+				      
+					$scope.Data['password'] = $scope.rePassword;
+					 console.log("###",$scope.Data);
+
+					 //console.log("get call user data" ,$scope.Data );
 					 $scope.existingUserOrNotCheck = "Updating new Password";
 					 $scope.whiznextLoader=true;
 
-              var URL = $global.getApiHost() + "updateCrm";
-            	var config = {
-						headers: {
-							'Content-Type': 'application/json; charset=utf-8',
-							"client-Id": $scope.clientId,
-							"secret-Id": $scope.secretId   
-						}
+              
 
-					};
-					
+					$http.post('/updateLoginUser',$scope.Data).success(function (res) {
+                    console.log(res);
+                    $location.path('login');
+                }).error(function () {
 
-					$http.post(URL, $scope.Data, config)
-						.success(function (data, status, headers, config) {
-							console.log(data + ": " + status);
-						$scope.whiznextLoader=false;
-						$scope.existingUserOrNotCheck = "Updated";
-						$location.path('login');
-						})
-						.error(function (data, status, header, config) {
-
-							var ResponseDetails = "Data: " + data +
-								"<hr />status: " + status +
-								"<hr />headers: " + header +
-								"<hr />config: " + config;
-							console.log("Failed to save document under Remibursement DB. " + ResponseDetails);
-							//$location.path('/error');
-							// error massage.
-							$scope.errorMassage = "OOPS! Check Your Interent Connection.";
-
-
-						});
+                });
 				};
 					
 				
 // validating  for user email already exits or not 				
-function fetchExistingOrNewUser() {
-	   $scope.fetchUserData = true;
-	
-	 var URL =  $global.getApiHost() + "fetchBasedOnEmployeeEmail?id=" + $scope.userName ;
-	
-	   	var config = {
-							headers: {
-								'Content-Type': 'application/json; charset=utf-8',
-								"client-Id": $scope.clientId,
-								"secret-Id": $scope.secretId   
-							}
+		function fetchExistingOrNewUser() {
+			
 
-						};
-						console.log( "API : " + URL);
-						
+			$http.post('/getUnactivatedData')
+				.success(function (data) {
+					//console.log("####",data);
+					//$scope.Data = data;
+					for(var i=0;i<data.length;i++){
+						$scope.Data = data[i];
+						//console.log("^^^",$scope.Data)
+					}
 
-						$http.get(URL, config)
-							.success(function (data, status, headers, config) {
-								console.log("@@@@",data.body[0]);
-								  $scope.Data =(data.body.length == 0) ? "no records Found" : data.body[0]; 
-								// once user  exits  give true or false status   
-								 $scope.validatingExistingUserOrNot = data.body.length == 0 ? false:true;
-								 validation();
-								 $scope.fetchUserData = false;
-								 
-								 
-								 
-								//console.log("STATUS", $scope.validatingExistingUserOrNot);
-							
-							})
-							.error(function (data, status, header, config) {
-
-								var ResponseDetails = "Data: " + data +
-									"<hr />status: " + status +
-									"<hr />headers: " + header +
-									"<hr />config: " + config;
-								console.log("Failed to save document under Remibursement DB. " + ResponseDetails);
-								//$location.path('/error');
-								// error massage.
-								$scope.errorMassage = "OOPS! Check Your Interent Connection.";
-
-
-							});
-
-				}; 
+					// once user  exits  give true or false status  
+					//console.log("data.body.length",data.body.length); 
+					$scope.validatingExistingUserOrNot = data == "" ? false : true;
+					validation();
+					//console.log(" FETCH SUCCESS STATUS", $scope.validatingExistingUserOrNot);
+					//$location.path('/login');
+					//console.log("log 3",$scope.company);
+				})
+				.error(function (data, status) {
+					console.log("error",data,status)
+					// if (status == -1) {
+					// 	$scope.validatingExistingUserOrNot = true;
+					// 	validation()
+					// }
+					console.log("Failed to fetch document under CRM  DB. " + status);
+					//$location.path('/error');
+					// error massage.	
+				});
+		}; 
 					$scope.onSelectUserName = function() {
 						$scope.userNameError = "";
 						$scope.existingUserOrNotCheck = "";
