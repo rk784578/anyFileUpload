@@ -209,7 +209,7 @@ app.post('/upload', upload.single('VideoToUpload'), function(req, res) {
 requriedNodeModules.request({
   uri:URL,
   method:"POST",
-  json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload"} 
+  json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload", data:req.body} 
 },(err,response,body)=>{
    
 

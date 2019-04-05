@@ -18,16 +18,31 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <td>Name</td>
-            <td>Path</td>
             <td>Upload Date</td>
+            <td>District</td>
+            <td>Subject</td>
+            <td>Message</td>
+            <td>File Name</td>
+            <td>Name</td>
+            <td>Designation</td>
+            <td>Employee ID</td>
+            <td>Mobile</td>
+            <td>Email</td>
+            
              </tr>
         </thead>
         <tbody>
-          <tr ng:repeat="x in uploadData.rows track by $index">
-            <td>{{x.doc.uploadFile.filename}}</td>
-            <td>{{x.doc.uploadFile.path}}</td>
-            <td>{{x.doc.date | numberToDate}}</td>
+          <tr ng:repeat="x in uploadData track by $index">
+            <td>{{x.date | numberToDate}}</td>
+            <td>{{x.districtCategory}}</td>
+            <td>{{x.data.subject}}</td>
+            <td>{{x.data.message}}</td>
+            <td>{{x.uploadFile.filename}}
+            <td>{{x.name}}</td>
+            <td>{{x.designation}}</td>
+            <td>{{x.empID}}</td>
+            <td>{{x.mobileNumber}}</td>
+            <td>{{x.email}}</td>
             <!-- <td>
               <button class="glyphicon glyphicon-pencil" type="button" ng:click="activate(x,$index)"></button>
             </td> -->

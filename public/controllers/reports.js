@@ -23,7 +23,7 @@ mainapp.controller('reportController', ['$scope',
          } 
 
              function fetchData(val){
-           $http.post('/getUploadData', {fetchdate:val}).success(function (data) {
+           $http.post('/getUnactivatedData').success(function (data) {
           console.log(data);
          $scope.uploadData = data;
           
