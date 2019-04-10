@@ -53,7 +53,7 @@ app.post('/getEmployeeDetails', (req, res) => {
    var db = "uploadanyregisterandlogin";
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
              db+ '/' + "_design/uploadAny/_search/fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body._id +'\"' + '&include_docs=true';
-  console.log(URL);    
+  //console.log(URL);    
 requriedNodeModules.request({
   uri:URL,
   method:"GET"
@@ -65,7 +65,7 @@ requriedNodeModules.request({
   }else{
     let parseData = JSON.parse(body);
     //console.log(body);
-    console.log("####",parseData.total_rows);
+    //console.log("####",parseData.total_rows);
     if(parseData.total_rows ==  0){
       res.send('0');
       console.log('if');
@@ -151,7 +151,7 @@ app.post('/updateLoginUser', (req, res) => {
  var db = "uploadanyregisterandlogin";
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
              db+ '/' + req.body._id;
-     console.log(URL);        
+     //console.log(URL);        
    
    
    requriedNodeModules.request({
@@ -209,7 +209,7 @@ app.post('/upload', upload.single('VideoToUpload'), function(req, res) {
 requriedNodeModules.request({
   uri:URL,
   method:"POST",
-  json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload", data:req.body} 
+  json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload", data:req.body, timestamp:dateAndTime(new Date())} 
 },(err,response,body)=>{
    
 
@@ -233,6 +233,21 @@ requriedNodeModules.request({
     }
     //return res.end();
 });
+
+
+  var dateAndTime = function(){
+  var currentdate = new Date();
+  var datetime = currentdate.getDate() + "/" +
+    (currentdate.getMonth() + 1) + "/" +
+    currentdate.getFullYear() + " @ " +
+    currentdate.getHours() + ":" +
+    currentdate.getMinutes() + ":" +
+    currentdate.getSeconds();
+    //console.log(dateAndTime);
+
+    return datetime;
+}
+
 
    function convertDateToInteger(data){
         if(data == undefined || data == null || data ==""){
@@ -272,7 +287,7 @@ requriedNodeModules.request({
     }
 
     var rowsObject = JSON.parse(body);
-  console.log(rowsObject);
+  //console.log(rowsObject);
   res.send(rowsObject);  
     
 })

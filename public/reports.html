@@ -1,4 +1,4 @@
-<div ng-controller='NavController' ng:show="navBar">
+<div ng-controller='NavController'>
   <div ng-include='template.navmenu'></div>
 </div>
 
@@ -28,7 +28,7 @@
             <td>Employee ID</td>
             <td>Mobile</td>
             <td>Email</td>
-            
+            <td>Time of Received</td>
              </tr>
         </thead>
         <tbody>
@@ -43,6 +43,7 @@
             <td>{{x.empID}}</td>
             <td>{{x.mobileNumber}}</td>
             <td>{{x.email}}</td>
+            <td>{{x.timestamp}}</td>
             <!-- <td>
               <button class="glyphicon glyphicon-pencil" type="button" ng:click="activate(x,$index)"></button>
             </td> -->
