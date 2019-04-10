@@ -1,4 +1,4 @@
-<div ng-controller='NavController' ng:show="navBar">
+<div ng-controller='NavController'>
   <div ng-include='template.navmenu'></div>
 </div>
 
@@ -13,10 +13,7 @@
             <td>Name</td>
             <td>E-Mail</td>
             <td>M.Number</td>
-            <td>C.Name</td>
-            <td>Requested Date</td>
             <td>Status</td>
-            <td>User Limit</td>
 
 
 
@@ -25,11 +22,8 @@
         <tbody>
           <tr ng:repeat="x in unActivedData track by $index">
             <td>{{x.name}}</td>
-            <td>{{x.userName}}</td>
+            <td>{{x.email}}</td>
             <td>{{x.mobileNumber}}</td>
-            <td>{{x.companyName}}</td>
-            <td>{{x.createdDate | date:'dd-MM-yy'}}</td>
-            <td>{{x.userLimit || '0'}}</td>
             <td>
               <button type="button" ng:click="activateOrDiactivate(x,$index)">{{x.state}}</button>
             </td>

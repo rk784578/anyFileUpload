@@ -32,7 +32,7 @@ mainapp.controller('loginController', ['$scope',
 	
 		$scope.superAdminLoginName = [];
 		$scope.login = function () {
-			if ($scope.userName == "admin" &&  $scope.password == "admin") {
+			if ($scope.userName == "superadmin" &&  $scope.password == "$admin247") {
 					
 					$global.setAdminlogged(true);
 					
@@ -40,7 +40,7 @@ mainapp.controller('loginController', ['$scope',
 					//console.log(' ADMIN HOMEPAGE');
 
 				}
-				else if($scope.userName == "uploadAdmin" &&  $scope.password == "admin"){
+				else if($scope.userName == "viewadmin" &&  $scope.password == "515admin"){
 					$global.setAdminlogged(true);
 					
 					$location.path('/reports'); 

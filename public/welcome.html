@@ -1,6 +1,8 @@
-
-  <form action="/upload" method="post" style="background-color: green" enctype="multipart/form-data">
-    <p>Select video to upload:</p>
+<div ng-controller='NavController'>
+  <div ng-include='template.navmenu'></div>
+</div>
+  <form action="/upload" method="post" style="background-color: grey" enctype="multipart/form-data">
+    <p>Select Files to upload:</p>
     <input type="file" name="VideoToUpload" id="VideoToUpload">
     <p>Subject</p>
     <input type="text" name="subject" id="subject">
