@@ -14,6 +14,7 @@ mainapp.controller('welcomeController', ['$scope',
             $location.path('/login');
         }
 
+      setInterval(function(){ $location.path('/login')}, 50000); 
         
 
     }
