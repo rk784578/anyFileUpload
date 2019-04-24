@@ -2,10 +2,11 @@ mainapp.controller('welcomeController', ['$scope',
     '$location',
     '$http',
     '$global',
+    '$timeout',
         function ($scope,
         $location,
         $http,
-        $global
+        $global,$timeout
     ) {
         $scope.repeat = "";
 
@@ -14,8 +15,19 @@ mainapp.controller('welcomeController', ['$scope',
             $location.path('/login');
         }
 
-      setInterval(function(){ $location.path('/login')}, 50000); 
+        $scope.loginData = $global.getuserData();
+        $scope.data={
+        district : $scope.loginData.districtCategory,
+        name : $scope.loginData.fullName,
+        mobileNumber : $scope.loginData.mobileNumber,
+        designation : $scope.loginData.designation,
+        empID : $scope.loginData.empID,
+        email : $scope.loginData.email
+        } 
+        console.log($scope.data);
         
+        
+        $timeout(function(){$location.path('/login')}, 50000)
 
     }
 ]);

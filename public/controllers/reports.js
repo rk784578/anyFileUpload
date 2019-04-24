@@ -14,18 +14,28 @@ mainapp.controller('reportController', ['$scope',
         if (!$global.getAdminlogged()) {
             $location.path('/login');
         }
-
-          fetchData(new Date())
+        $scope.date = new Date()
+          fetchData( $scope.date)
 
        //$scope.uploadData = [];
+       
       $scope.uploadedData= function(val){
           fetchData(val)
          } 
+          
+            $scope.upload = [];
+
 
              function fetchData(val){
-           $http.post('/getUnactivatedData').success(function (data) {
-          console.log(data);
-         $scope.uploadData = data;
+            var date = $scope.date;   
+           $http.post('/getUploadData',{date:$scope.date}).success(function (data) {
+          
+          for(var i=0;i<data.rows.length;i++){
+
+            $scope.upload.push(data.rows[i].doc);
+            console.log($scope.upload);
+          }
+           
           
           
            
