@@ -200,7 +200,9 @@ var upload = requriedNodeModules.multer({ storage: storage ,fileFilter:fileFilte
 
 
 app.post('/upload', upload.single('VideoToUpload'), function(req, res) {
-    console.log('File here',req.file);
+    //console.log('File here',req.file);
+    //console.log("upload Data", {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body, timestamp:dateAndTime(new Date()) 
+//})
 
    var db = "uploadanyregisterandlogin";
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
@@ -209,7 +211,8 @@ app.post('/upload', upload.single('VideoToUpload'), function(req, res) {
 requriedNodeModules.request({
   uri:URL,
   method:"POST",
-  json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload", data:req.body, timestamp:dateAndTime(new Date())} 
+  json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body.district, name:req.body.name,
+          mobileNumber:req.body.mobileNumber,designation:req.body.designation,empID:req.body.empID,email:req.body.email, timestamp:dateAndTime(new Date())} 
 },(err,response,body)=>{
    
 
@@ -270,7 +273,7 @@ requriedNodeModules.request({
  // report Data 
   app.post('/getUploadData', (req, res) => {
    var db = "uploadanyregisterandlogin/";
-   var date = convertDateToInteger(req.body.fetchdate);
+   var date = convertDateToInteger(req.body.date);
    console.log(date);
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
               //'_design/logisticsDesign/_search/logisticsRecordsByType?query=logisticsType:\"Import\"&include_docs=true'            
