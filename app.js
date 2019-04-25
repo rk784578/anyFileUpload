@@ -192,7 +192,7 @@ function fileFilter (req, file, cb) {
     cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname + requriedNodeModules.path.extname(file.originalname)) //Appending extension
+    cb(null, file.originalname ) //Appending extension
   }
 })
 
@@ -240,9 +240,7 @@ requriedNodeModules.request({
 
   var dateAndTime = function(){
   var currentdate = new Date();
-  var datetime = currentdate.getDate() + "/" +
-    (currentdate.getMonth() + 1) + "/" +
-    currentdate.getFullYear() + " @ " +
+  var datetime = 
     currentdate.getHours() + ":" +
     currentdate.getMinutes() + ":" +
     currentdate.getSeconds();
