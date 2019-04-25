@@ -27,7 +27,7 @@ mainapp.controller('welcomeController', ['$scope',
         console.log($scope.data);
         
         
-        $timeout(function(){$location.path('/login')}, 50000)
+        $timeout(function(){$location.path('/login')}, 500000)
 
     }
 ]);
