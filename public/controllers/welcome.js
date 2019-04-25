@@ -22,7 +22,8 @@ mainapp.controller('welcomeController', ['$scope',
         mobileNumber : $scope.loginData.mobileNumber,
         designation : $scope.loginData.designation,
         empID : $scope.loginData.empID,
-        email : $scope.loginData.email
+        email : $scope.loginData.email,
+        profile : $scope.loginData.profileCategory
         } 
         console.log($scope.data);
         

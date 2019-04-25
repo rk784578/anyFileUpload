@@ -212,7 +212,7 @@ requriedNodeModules.request({
   uri:URL,
   method:"POST",
   json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body.district, name:req.body.name,
-          mobileNumber:req.body.mobileNumber,designation:req.body.designation,empID:req.body.empID,email:req.body.email, timestamp:dateAndTime(new Date())} 
+          mobileNumber:req.body.mobileNumber,profile:req.body.profile,designation:req.body.designation,empID:req.body.empID,email:req.body.email, timestamp:dateAndTime(new Date())} 
 },(err,response,body)=>{
    
 
