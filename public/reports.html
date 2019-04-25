@@ -11,6 +11,13 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-3 col-sm-12">
+     <button  type="button" class=" btn btn-success btn-sm" 
+                 ng-click = " exportToExcel('#tableToExport')" style="margin-top: 16px;">
+                     Download Report
+          </button>
+    
+    </div>
 
    <div class="container">
    <div class="col-md-11 col-sm-11">
@@ -24,6 +31,7 @@
             <td>Message</td>
             <td>File Name</td>
             <td>Name</td>
+            <td>Profile</td>
             <td>Designation</td>
             <td>Employee ID</td>
             <td>Mobile</td>
@@ -39,6 +47,7 @@
             <td>{{x.message}}</td>
             <td>{{x.uploadFile.filename}}
             <td>{{x.name}}</td>
+            <td>{{x.profile}}</td>
             <td>{{x.designation}}</td>
             <td>{{x.empID}}</td>
             <td>{{x.mobileNumber}}</td>
@@ -53,10 +62,4 @@
     </div>
     </div>
   </div>
-  <div align="center">
-     <button  type="button" class=" btn btn-success btn-sm" 
-                 ng-click = " exportToExcel('#tableToExport')" style="margin-top: -417px;">
-                     Download Report
-          </button>
-    
-    </div>
+  

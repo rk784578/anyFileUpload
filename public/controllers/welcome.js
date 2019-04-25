@@ -22,12 +22,13 @@ mainapp.controller('welcomeController', ['$scope',
         mobileNumber : $scope.loginData.mobileNumber,
         designation : $scope.loginData.designation,
         empID : $scope.loginData.empID,
-        email : $scope.loginData.email
+        email : $scope.loginData.email,
+        profile : $scope.loginData.profileCategory
         } 
         console.log($scope.data);
         
         
-        $timeout(function(){$location.path('/login')}, 50000)
+        $timeout(function(){$location.path('/login')}, 500000)
 
     }
 ]);
