@@ -13,9 +13,9 @@
             </div>
 
    <div class="container">
-  <div class="col-md-11 col-sm-11">
+   <div class="col-md-11 col-sm-11">
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table class="table table-bordered" id="tableToExport">
         <thead>
           <tr>
             <td>Upload Date</td>
@@ -52,4 +52,11 @@
       </table>
     </div>
     </div>
+  </div>
+  <div align="center">
+     <button  type="button" class=" btn btn-success btn-sm" 
+                 ng-click = " exportToExcel('#tableToExport')" style="margin-top: -417px;">
+                     Download Report
+          </button>
+    
     </div>
