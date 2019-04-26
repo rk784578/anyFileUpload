@@ -211,8 +211,18 @@ app.post('/upload', upload.single('VideoToUpload'), function(req, res) {
 requriedNodeModules.request({
   uri:URL,
   method:"POST",
-  json: {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body.district, name:req.body.name,
-          mobileNumber:req.body.mobileNumber,profile:req.body.profile,designation:req.body.designation,empID:req.body.empID,email:req.body.email, timestamp:dateAndTime(new Date())} 
+  json: {     uploadFile:req.file, date: convertDateToInteger(new Date()),
+              type: "upload",
+              message:req.body.message, 
+              subject:req.body.subject, 
+              district:req.body.district,
+              name:req.body.name,
+              mobileNumber:req.body.mobileNumber,
+              profile:req.body.profile,
+              designation:req.body.designation,
+              empID:req.body.empID,
+              email:req.body.email, 
+              timestamp:dateAndTime(new Date())} 
 },(err,response,body)=>{
    
 
@@ -239,15 +249,32 @@ requriedNodeModules.request({
 
 
   var dateAndTime = function(){
-  var currentdate = new Date();
-  var datetime = 
-    currentdate.getHours() + ":" +
-    currentdate.getMinutes() + ":" +
-    currentdate.getSeconds();
+    let dt = new Date();
+    var h =  dt.getHours(), m = dt.getMinutes();
+    var _time = (h > 12) ? (h-12 + ':' + m +' PM') : (h + ':' + m +' AM');
+  
     //console.log(dateAndTime);
 
-    return datetime;
+    return convertTime12to24(_time);
 }
+
+       const convertTime12to24 = (time12h) => {
+        const [time, modifier] = time12h.split(' ');
+      
+        let [hours, minutes] = time.split(':');
+      
+        if (hours === '12') {
+          hours = '00';
+        }
+      
+        if (modifier === 'PM') {
+          hours = parseInt(hours, 10) + 12;
+        }
+      
+        return `${hours}:${minutes}`;
+      }
+      
+    
 
 
    function convertDateToInteger(data){
