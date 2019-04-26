@@ -255,7 +255,8 @@ requriedNodeModules.request({
   
     //console.log(dateAndTime);
 
-    return convertTime12to24(_time);
+    return _time;
+    //convertTime12to24(_time);
 }
 
        const convertTime12to24 = (time12h) => {
