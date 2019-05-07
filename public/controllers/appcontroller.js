@@ -49,9 +49,14 @@ mainapp.config(function ($routeProvider,$locationProvider) {
             {
                 controller: 'reportController',
                 templateUrl: '../reports.html'
-            })   
+            })
+            .when('/website',
+            {
+                //controller: 'reportController',
+                templateUrl: '../site.html'
+            })     
         .otherwise({
-            redirectTo: '/login'
+            redirectTo: '/website'
         });
         $locationProvider.html5Mode(true);
 });
