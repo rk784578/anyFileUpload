@@ -14,9 +14,9 @@ mainapp.controller('reportController', ['$scope',
 
 
 
-        // if (!$global.getAdminlogged()) {
-        //     $location.path('/login');
-        // }
+        if (!$global.getAdminlogged()) {
+            $location.path('/login');
+        }
 
         $scope.date = new Date()
         $scope.message = "Fetching Data ......";
