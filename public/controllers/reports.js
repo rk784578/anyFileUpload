@@ -14,15 +14,19 @@ mainapp.controller('reportController', ['$scope',
 
 
 
-        if (!$global.getAdminlogged()) {
-            $location.path('/login');
-        }
+        // if (!$global.getAdminlogged()) {
+        //     $location.path('/login');
+        // }
+
         $scope.date = new Date()
+        $scope.message = "Fetching Data ......";
         fetchData($scope.date)
 
         //$scope.uploadData = [];
 
         $scope.uploadedData = function (val) {
+            $scope.message = "Fetching Data ......";
+            $scope.afterData = false;
             fetchData(val)
         }
 
@@ -33,11 +37,23 @@ mainapp.controller('reportController', ['$scope',
             var date = $scope.date;
             $http.post('/getUploadData', { date: $scope.date }).success(function (data) {
 
+                console.log(data);
+                if(! data.total_rows == 0){
+
+                
                 for (var i = 0; i < data.rows.length; i++) {
 
                     $scope.upload.push(data.rows[i].doc);
                     console.log($scope.upload);
                 }
+                $scope.message = "";
+                $scope.afterData = true;
+            }
+            else{
+                $scope.message = "Oops! No records are found ";
+                $scope.afterData = false;
+            }
+                
 
 
 

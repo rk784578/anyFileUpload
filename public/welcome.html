@@ -1,75 +1,50 @@
 <div ng-controller='NavController'>
-  <div ng-include='template.navmenu'></div>
+    <div ng-include='template.navmenu'></div>
 </div>
 <div class="main">
-<!-- Content Here -->
+    <!-- Content Here -->
 
 
-<div class="col-md-10 col-sm-10 everyPage">
-  <div class="tab-pane fade in active"  >
-    <div class="col-md-6 col-sm-6">
-     <center>
-      <h4>File Uploading</h4>
-  <form action="/upload" method="post" style="background-color: grey" enctype="multipart/form-data">
-    <!-- <div class="col-sm-6">
-    <p>Select Files to upload:</p>
-    <input type="file" name="VideoToUpload" id="VideoToUpload">
-</div> -->
-<div class="form-group">
-<div class="col-md-12">
-<div class="col-md-2"></div>
-                                                            <div class="col-md-5">
-                                                                <label for="text">Select Files to upload:</label>
-                                                                <div>
-                                                                    <input type="file" name="VideoToUpload" id="VideoToUpload">
-                                                                </div>
+    <div class="row">
+        <div class="tab-pane fade in active">
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-    <!-- <p>Subject</p>
-    <input type="text" name="subject" id="subject"> -->
-    <div class="form-group">
-<div class="col-md-12">
-<div class="col-md-2"></div>
-                                                            <div class="col-md-5">
-                                                                <label for="text">Subject</label>
-                                                                <div>
-                                                                     <input type="text" name="subject" id="subject">
-                                                                </div>
+            <div class="col-sm-6">
+                <h3>
+                    <center><i>Upload Your File Hassle Free</i></center>
+                </h3>
+                <br>
+                <center>
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="text">Select Files to upload</label>
+                            <div><input type="file" name="VideoToUpload" id="VideoToUpload"></div>
+                              <br>
+                            <label for="text">Subject</label>
+                            <div><input type="text" name="subject" id="subject"></div>
+                              <br>
+                            <label for="text">Message</label>
+                            <div><input type="text" name="message"></div>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-    <!-- <p>Message</p>
-    <input type="text" name="message"> -->
-    <div class="form-group">
-<div class="col-md-12">
-<div class="col-md-2"></div>
-                                                            <div class="col-md-5">
-                                                                <label for="text">Message</label>
-                                                                <div>
-                                                                      <input type="text" name="message">
-                                                                </div>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-    <div style="display: none">
-    <input type="text" name="district" ng-model="data.district">
-    <input type="text" name="name" ng-model="data.name">
-    <input type="text" name="mobileNumber" ng-model="data.mobileNumber">
-    <input type="text" name="designation" ng-model="data.designation">
-    <input type="text" name="empID" ng-model="data.empID">
-    <input type="text" name="email" ng-model="data.email">
-    <input type="text" name="profile" ng-model="data.profile">
-</div>
-    <input type="submit" value="Upload" name="submit">
+                        </div>
+                        <div style="display: none">
+                            <input type="text" name="district" ng-model="data.district">
+                            <input type="text" name="name" ng-model="data.name">
+                            <input type="text" name="mobileNumber" ng-model="data.mobileNumber">
+                            <input type="text" name="designation" ng-model="data.designation">
+                            <input type="text" name="empID" ng-model="data.empID">
+                            <input type="text" name="email" ng-model="data.email">
+                            <input type="text" name="profile" ng-model="data.profile">
+                        </div>
 
-</form>
-</center>
+                        <input type="submit" class="btn btn-primary" value="Upload" name="submit">
+
+                    </form>
+                </center>
+            </div>
+            <div class="col-sm-6"><img src="./images/track.jpg" style="height:100%"></div>
+
+        </div>
+    </div>
 </div>
 </div>
-</div>
-</div>
-
