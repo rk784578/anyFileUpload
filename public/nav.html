@@ -1,106 +1,23 @@
-<nav class="navbar navbar-inverse sidebar" role="navigation" style="position: inherit;">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <!-- ahp : admin home page of org  this is dummy as of now -->
-      <div class="row">
-        <div class="col-md-6 ">
-            <a class="navbar-brand" href="welcome">AFTS</a> 
-        </div>
-        <div class="col-md-6 ">
-            <span style="color: white" >
-                {{userName}}
-              </span>
-        </div>
-
+<!--  -->
+<nav class="navbar navbar-inverse" role="navigation" style="position: inherit;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="welcome">AFTS</a>
       </div>
-   
-     
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <!-- <ul class="nav navbar-nav">
+          <li class="active"><a href="welcome">AFTS</a></li>
+        </ul> -->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+      </div>
     </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active" ng:show="welcomePage">
-          <a href="welcome">Welcome
-            <span style="font-size:16px;color: #0AC929;" class="pull-right hidden-xs showopacity glyphicon glyphicon-asterisk"></span>
-          </a>
-        </li>
-        <!-- <li ng:show="dashbordPage">
-          <a href="dashbord">Dashboard
-            <span style="font-size:16px;color: #0AC929;" class="pull-right hidden-xs showopacity glyphicon glyphicon-asterisk"></span>
-          </a>
-        </li> -->
-        <li ng:show="contactsPage">
-          <a href="adminContactsEdit">Contacts
-            <span style="font-size:16px;color: blue;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span>
-          </a>
-        </li>
-        <li ng:show="taskPage">
-          <a href="newtask">Tasks
-            <span style="font-size:16px;color: #DE703B;" class="pull-right hidden-xs showopacity  glyphicon glyphicon-flash"></span>
-          </a>
-        </li>
-        <li class="dropdown" ng:show="webAnaltyicsPage">
-          <a href="seo">Web Analytics
-            <span style="font-size:16px;color: #E54549;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cloud"></span>
-          </a>
-        </li>
-        <li ng:show="campaignPage">
-          <a href="campaign">Campaign
-            <span style="font-size:16px;color: #D9EDF7;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span>
-          </a>
-        </li>
-        <li ng:show="bulkSmsPage">
-          <a href="bulkSms">Behaviour Messaging
-            <span style="font-size:16px;color: #F76300;" class="pull-right hidden-xs showopacity glyphicon glyphicon-inbox"></span>
-          </a>
-        </li>
-        <li ng:show="bulkEmailPage">
-          <a href="bulkEmail">Email
-            <span style="font-size:16px;color: #A62320;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span>
-          </a>
-        </li>
-        <li ng:show="customApiPage">
-          <!-- class="dropdown" -->
-          <a href="customApi">Custom API
-            <span style="font-size:16px;color: #F7B217;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span>
-          </a>
+  </nav>
 
-        </li>
-        <li ng:show="schedulePage">
-          <!-- class="dropdown" -->
-          <a href="schedule" >Schedule
-            <span style="font-size:16px;color: #F7B217;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th"></span></a>
-        
-        </li>
-        <li ng:show="recommendationsPage">
-          <a href="recommendation">Recommendation
-            <span style="font-size:16px;color: #413768;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span>
-          </a>
-        </li>
-        <li ng:show="adminPage">
-          <a href="admin">Admin
-            <span style="font-size:16px;color: #BB744A;" class="pull-right hidden-xs showopacity glyphicon glyphicon-lock"></span>
-          </a>
-        </li>
-        <!--  <li ><a href="#cases">Cases<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
-        <li ><a href="#deals">Deals<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
-        <li ><a href="#searchNotes">Search Notes<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
-        <li ><a href="#trashCan">Trash can<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li> -->
-        <li >
-          <a href="logout">Logout
-            <span style="font-size:16px;" class="pull-right hidden-xs showopacity  glyphicon glyphicon-off"></span>
-          </a>
-          
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+ 

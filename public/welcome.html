@@ -1,11 +1,62 @@
 <div ng-controller='NavController'>
     <div ng-include='template.navmenu'></div>
 </div>
-<div class="main">
-    <!-- Content Here -->
+
+<!-- Content Here -->
+<div class="form">
+    <div class="haed">
+        <h1>Advance File Transfer System</h1>
+    </div>
+
+    <div class="tab-content">
 
 
-    <div class="row">
+        <div id="signup">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+
+                <div class="field">
+                    <input type="file" name="VideoToUpload" id="VideoToUpload" placeholder=" " >
+                    <label for="VideoToUpload">Select Files to upload
+                        <span style="color:red">{{nameError}}</span>
+                    </label>
+                </div>
+                <div class="field">
+                        <input type="text" name="Subject" id="Subject" ng-model="Subject" placeholder=" ">
+                        <label for="Subject">Subject
+                            <span style="color:red">{{nameError}}</span>
+                        </label>
+                    </div> 
+                    <div class="field">
+                            <input type="text" name="Message" id="Message" ng-model="Message" placeholder=" ">
+                            <label for="Message">Message
+                                <span style="color:red">{{nameError}}</span>
+                            </label>
+                        </div>
+
+                <span style="color: red;">{{existingUserOrNotCheck}}</span>
+                <button type="submit" class="btn btn-primary" value="Upload" name="submit">
+                    <b>Upload &nbsp;
+                        <img src="/icon/postLoader.gif" ng:show="loadder">
+                    </b>
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+        <form>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- tab-content -->
+
+<!-- 
+<div class="row">
         <div class="tab-pane fade in active">
 
             <div class="col-sm-6">
@@ -42,9 +93,7 @@
                     </form>
                 </center>
             </div>
-            <div class="col-sm-6"><img src="./images/track.jpg" style="height:100%"></div>
 
         </div>
     </div>
-</div>
-</div>
+</div> -->

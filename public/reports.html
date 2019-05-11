@@ -3,39 +3,35 @@
 </div>
 
 
-<br>
-<br>
+  <div class="row">
+<div class="col-sm-6">
+    <div class="input-group date pull-right" style="margin-top: 17px;">
+        <div class="input-group date"> <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+          <input type="date" class="form-control input-sm" ng-model="date" ng-change="uploadedData(date)" />
+        </div>
+      </div>
+</div>
+<div class="col-sm-2">
+    <div class="input-group date">
+        <button type="button" class=" btn btn-success btn-sm" ng-click=" exportToExcel('#tableToExport')"
+          style="margin-top: 16px;">
+          Download Report
+        </button>
+      </div>
+</div>
+<div class="col-sm-4">
 
-
-<center>
-    
-  <div class="input-group date">
-    <p>Date: &nbsp; <b>{{message}}</b></p>
-    <div class="input-group date"> <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
-      </span>
-      <input type="date" class="form-control input-sm" ng-model="date" ng-change="uploadedData(date)" />
-    </div>
-  </div>
-</center>
-
-
-<div class="container" ng:show="afterData">
-    <br>
-
-<center>
-  <div >
-    <button type="button" class=" btn btn-success btn-sm" ng-click=" exportToExcel('#tableToExport')"
-      style="margin-top: 16px;">
-      Download Report
-    </button>
+</div>
   </div>
 
-  <br> 
 
-  <div class="col-md-11 col-sm-11">
+<div class="container" ng:show="afterData" style="background: white;margin-top: 10px">
+
+  <div class="col-md-12" style="margin-top: 15px;">
     <div class="table-responsive">
       <table class="table table-bordered" id="tableToExport">
-        <thead>
+        <thead class="th">
           <tr>
             <td>Upload Date</td>
             <td>District</td>
@@ -51,7 +47,7 @@
             <td>Time of Received</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="tb">
           <tr ng:repeat="x in upload | orderBy:'timestamp' track by $index">
             <td>{{x.date | numberToDate}}</td>
             <td>{{x.district}}</td>
@@ -71,7 +67,6 @@
           </tr>
         </tbody>
       </table>
-    </center>
     </div>
   </div>
 </div>

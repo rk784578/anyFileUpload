@@ -443,5 +443,19 @@ width: 64%;
 }
 .campaignLable{
   float: left;
-
+}
+.th tr td{
+  color: #ef402f;
+    /* border:  1px solid; */
+    border-color: #4394d3 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    font-size: 13px;
+    font-weight: bold !important;
+}
+.tb tr td{
+    border-color: #4394d3 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    font-size: 13px;
 }

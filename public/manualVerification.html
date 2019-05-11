@@ -4,17 +4,17 @@
 
 
 
-<div class="container">
+<div class="container" style="background: white">
   <br>
-    <br>
-       <div >{{message}} </div>
-       <br>
-       <br>
-       
-  <div class="col-md-11 col-sm-11" ng:show ="dataTable">
+  <br>
+  <div>{{message}} </div>
+  <br>
+  <br>
+
+  <div class="col-md-11 col-sm-11" ng:show="dataTable">
     <div class="table-responsive">
       <table class="table table-bordered">
-        <thead>
+        <thead class="th">
           <tr>
             <td>Name</td>
             <td>E-Mail</td>
@@ -22,13 +22,18 @@
             <td>Status</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="tb">
           <tr ng:repeat="x in unActivedData track by $index">
             <td>{{x.name}}</td>
             <td>{{x.email}}</td>
             <td>{{x.mobileNumber}}</td>
             <td>
-              <button type="button" ng:click="activateOrDiactivate(x,$index)">{{x.state}}</button>
+              <span ng-if="x.state !== 'inActive' ">
+                <button type="button" class="btn btn-primary" style="background: #4394d3;" ng:click="activateOrDiactivate(x,$index)">{{x.state}}</button>
+              </span>
+              <span ng-if="x.state === 'inActive' ">
+                <button type="button" class="btn btn-default" style="background: #ef402f;" ng:click="activateOrDiactivate(x,$index)">{{x.state}}</button>
+              </span>
             </td>
             <!-- <td>
               <button class="glyphicon glyphicon-pencil" type="button" ng:click="activate(x,$index)"></button>
@@ -39,7 +44,3 @@
     </div>
   </div>
 </div>
-
-
-
-

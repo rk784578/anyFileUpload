@@ -13,7 +13,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1ab188;
+  color: #4394d3;
   transition: .5s ease;
 }
 a:hover {
@@ -22,13 +22,19 @@ a:hover {
 
 .form {
   background:white;
-  padding: 40px;
   max-width: 600px;
+  min-height: 500px;
   margin: 40px auto;
   border-radius: 4px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
-
+.haed {
+  background: #4394d3 !important;
+  color: white;
+  padding: 2px;
+  margin-bottom: 30px;
+  margin-bottom: 90px;
+}
 .tab-group {
   list-style: none;
   padding: 0;
@@ -67,9 +73,8 @@ a:hover {
 
 h1 {
   text-align: center;
-  color: blue;
   font-weight: 300;
-  margin: 0 0 40px;
+  font-size: 26px;
 }
 
 .field {
@@ -77,14 +82,14 @@ h1 {
   flex-flow: column-reverse;
   margin-bottom: 1em;
   /*color:#3B3C3F;*/
-  color: darkblue;
+  color: #4394d3;
 }
 
 input { 
     
   font-size: 1em;
   border: 0;
-  border-bottom: 1px solid #C0C0C0;
+  border-bottom: 1px solid #4394d3;
   font-family: inherit;
   /*-webkit-appearance: none;*/
   border-radius: 0;
@@ -103,7 +108,9 @@ label {
   letter-spacing: 0.05em;
   padding-bottom: 10px;
   font-size: 10px;
-}
+  text-align: left;
+  padding-left: 5px;
+} 
 /**
 * Translate down and scale the label up to cover the placeholder,
 * when following an input (with placeholder-shown support).
@@ -193,9 +200,10 @@ input:focus + label {
 .forgot {
   padding-top: 50px;
   text-align: right;
+  padding-right: 10px;
 }
 
-.button1{
+/* .button1{
   background-color: #2276e4;
   border:none;
   text-align: center;
@@ -210,12 +218,13 @@ input:focus + label {
   border-radius: 5px;
   cursor:pointer;
   position:relative;
+  border: #ef402f 1px solid;
 
 }
 
 .button1:hover{
-background-color: rgb(104, 145, 300);
-}
+background-color: #ef402f;
+} */
 
 .top-row:after {
   content: "";
@@ -265,11 +274,11 @@ background-color: rgb(104, 145, 300);
 
 
 .button1{
-  background-color: #2276e4;
-  border:none;
+  background: transparent ;
+  border: #ef402f 1px solid;
   text-align: center;
   text-decoration: none;
-  color:white;
+  color:#ef402f ;
   display: inline-block;
   font-size: 18px;
   padding:10px;
@@ -281,10 +290,17 @@ background-color: rgb(104, 145, 300);
   position:relative;
 
 }
-
-.button1:hover{
-background-color: rgb(104, 145, 300);
+.button1 a {
+  color:#ef402f ;
 }
+
+.button1 a:hover {
+  color: white !important;
+}
+ .button1:hover{
+  background-color: #ef402f;
+  color: white;
+ }
 
 
 

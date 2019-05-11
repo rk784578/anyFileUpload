@@ -321,30 +321,6 @@ mainapp.controller('NavController', ['$scope', '$global', '$http', function ($sc
     };
 
 
-    $scope.latestActivityPage = $global. getLatestActivityPage();
-    $scope.contactsPage=$global.getContactsPage();
-    //console.log($scope.contactsPage);
-    $scope.taskPage= $global.getTaskPage();
-    $scope.dealsPage= $global.getDealsPage();
-    $scope.casesPage = $global.getCasePage();
-    $scope.bulkEmailPage= $global.getBulkEmailPage();
-    $scope.searchNotesPage= $global.getSearchNotesPage();
-    $scope.trashCanPage= $global.getTrashCanPage();
-    $scope.adminContactEdit = $global.getAdminContactEdit();
-    $scope.welcomePage = $global.getWelcomePage();
-    $scope.bulkSmsPage = $global.getBulkSms();  
-    $scope.dashbordPage = $global.getDashbordPage();
-    $scope.webAnaltyicsPage = $global.getSeoPage();
-    $scope.adminPage = $global.getAdminPage();
-    $scope.campaignPage = $global.getCampaignPage();
-    $scope.recommendationsPage = $global.getRecommendationsPage();
-    $scope.customApiPage = $global.getCustomApiPage();
-    $scope.schedulePage = $global.getSchedule();
-    $scope.welcomePage= $global.getWelcome();
-  
-    // it will display the name in the menu bar 
-    $scope.userName = ($global.getuserData()[0] == undefined) ?'' :$global.getuserData()[0].name;
-
 
 
 }]);

@@ -1,5 +1,7 @@
 <div class="form">  
- <h1>Advance File Transfer System</h1>
+  <div class="haed">
+    <h1>Advance File Transfer System</h1>
+  </div>
 
  <!-- <ul class="tab-group">
         <li class="tab"><a href="signUp">Sign Up</a></li>
@@ -20,10 +22,15 @@
   
 
   <p style="text-align: right;" class="forgot" ><a href="#forgotPasswordPage" ng-click="forgotPassword()">Reset Password?</a></p>
-  <button type="submit" value="login" ng-click="login()" class="button1">
-         <b>Login<img src="./icon/postLoader.gif" ng:show="loader"></b>
-  </button>
-  <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p>
+  <div class="row" style="margin-right: 30px;margin-top: 60px">
+        <a value="signUp" class="button1" href="signUp" style="text-decoration: none"><b>signUp</b></a>
+      
+    <button type="submit" value="login" ng-click="login()" class="button1" style="margin-top: -5px;">
+           <b>Login<img src="./icon/postLoader.gif" ng:show="loader"></b>
+    </button>
+
+  </div>
+  <!-- <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p> -->
 
           </form>
 
