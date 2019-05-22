@@ -458,4 +458,14 @@ width: 64%;
     border-width: 1px !important;
     border-style: solid !important;
     font-size: 13px;
+    color:  white;
+}
+.activeButton:hover{
+  color: #4394d3 
+}
+.deactiveButton{
+  border: 1px solid #ef402f !important;
+}
+.deactiveButton:hover{
+  color: #ef402f !important;
 }

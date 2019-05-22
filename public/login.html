@@ -1,38 +1,62 @@
-<div class="form">  
-  <div class="haed">
-    <h1>Advance File Transfer System</h1>
-  </div>
+<section id="intro">
+  <div class="intro-container">
+    <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
- <!-- <ul class="tab-group">
-        <li class="tab"><a href="signUp">Sign Up</a></li>
-        <li class="tab active"><a href="login">Log In</a></li>
-      </ul> -->
- <form>
- <p style="color: red;font-size: 11px;">{{userValidationError}}{{Error}}{{successMessage}} &nbsp;&nbsp; <a ng:click="reSend()" ng:show="resendShow">Re-send Verification Link</a></p>
- <div class="col-md-12">
-  <div class="field">
-    <input type="text" name="email" id="email1" ng-model="userName" ng-change="onSelectUserName()" placeholder=" " required>
-    <label for="email1">User Name</label>
-  </div>
-     <div class="field">
-    <input type="password" name="password" id="password1" ng-model="password" ng-change="onSelectUserName()" placeholder=" " required>
-    <label for="password1">Password</label>
+      <div class="carousel-inner" role="listbox">
+<div class="item active">
+  <div class="carousel-background"><img src="images/img/intro/1.jpg" alt=""></div>
+  <div class="carousel-container">
+    <div class="row" style="width: 100%;">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+          <div class="form">  
+              <div class="haed">
+                <h1>Login</h1>
+                <div style="margin-top: 30px;">
+                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                </div>
+              </div>
+            
+             <!-- <ul class="tab-group">
+                    <li class="tab"><a href="signUp">Sign Up</a></li>
+                    <li class="tab active"><a href="login">Log In</a></li>
+                  </ul> -->
+             <form autocomplete="off">
+             <p style="color: red;font-size: 11px;">{{userValidationError}}{{Error}}{{successMessage}} &nbsp;&nbsp; <a ng:click="reSend()" ng:show="resendShow">Re-send Verification Link</a></p>
+             <div class="col-md-12">
+              <div class="field">
+                <input type="text" name="email" id="email1" ng-model="userName" ng-change="onSelectUserName()" placeholder=" " required>
+                <label for="email1">User Name</label>
+              </div>
+                 <div class="field">
+                <input type="password" name="password" id="password1" ng-model="password" ng-change="onSelectUserName()" placeholder=" " required>
+                <label for="password1">Password</label>
+              </div>
+            </div>
+              
+            
+              <p style="text-align: right;" class="forgot" ><a href="#forgotPasswordPage" ng-click="forgotPassword()">Reset Password?</a></p>
+              <div class="row" style="margin-right: 30px;">
+                    <a value="signUp" class="button1" href="signUp" style="text-decoration: none">signUp</a>
+                  
+                <button type="submit" value="login" ng-click="login()" class="button1" style="margin-top: -5px;">
+                       Login<img src="./icon/postLoader.gif" ng:show="loader">
+                </button>
+            
+              </div>
+              <!-- <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p> -->
+            
+                      </form>
+            
+                    </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  
   </div>
 </div>
-  
-
-  <p style="text-align: right;" class="forgot" ><a href="#forgotPasswordPage" ng-click="forgotPassword()">Reset Password?</a></p>
-  <div class="row" style="margin-right: 30px;margin-top: 60px">
-        <a value="signUp" class="button1" href="signUp" style="text-decoration: none"><b>signUp</b></a>
-      
-    <button type="submit" value="login" ng-click="login()" class="button1" style="margin-top: -5px;">
-           <b>Login<img src="./icon/postLoader.gif" ng:show="loader"></b>
-    </button>
-
-  </div>
-  <!-- <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p> -->
-
-          </form>
-
-        </div>
+</div>
+</div>
+</div>
+</section>
       

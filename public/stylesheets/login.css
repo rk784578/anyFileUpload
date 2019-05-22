@@ -21,19 +21,18 @@ a:hover {
 }
 
 .form {
-  background:white;
+  /* background:white; */
   max-width: 600px;
   min-height: 500px;
   margin: 40px auto;
   border-radius: 4px;
-  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  box-shadow: 0 4px 10px 4px rgba(3, 5, 7, 0.3);
 }
 .haed {
-  background: #4394d3 !important;
-  color: white;
+  /* background: #4394d3 !important; */
+  color: #4394d3;
   padding: 2px;
   margin-bottom: 30px;
-  margin-bottom: 90px;
 }
 .tab-group {
   list-style: none;
@@ -95,6 +94,7 @@ input {
   border-radius: 0;
   padding: 0 0 5px 0;
   cursor: text;
+  background: transparent;
 }
 
 input:focus {
@@ -109,7 +109,7 @@ label {
   padding-bottom: 10px;
   font-size: 10px;
   text-align: left;
-  padding-left: 5px;
+  /* padding-left: 5px; */
 } 
 /**
 * Translate down and scale the label up to cover the placeholder,
@@ -152,6 +152,7 @@ input:focus + label {
   cursor: pointer;
   color:#2276e4;
   transition:.25s ease;
+  font-size: 14px;
 }
 
 
@@ -198,9 +199,8 @@ input:focus + label {
 }
 
 .forgot {
-  padding-top: 50px;
-  text-align: right;
   padding-right: 10px;
+  width: 100% !important;
 }
 
 /* .button1{
@@ -275,13 +275,13 @@ background-color: #ef402f;
 
 .button1{
   background: transparent ;
-  border: #ef402f 1px solid;
+  border: #4394d3 1px solid;
   text-align: center;
   text-decoration: none;
-  color:#ef402f ;
+  color:white ;
   display: inline-block;
   font-size: 18px;
-  padding:10px;
+  padding:5px;
   top:50%;
   left:40%;
   margin-top: 30px;
@@ -291,16 +291,25 @@ background-color: #ef402f;
 
 }
 .button1 a {
-  color:#ef402f ;
+  color:#4394d3 ;
 }
 
 .button1 a:hover {
   color: white !important;
 }
  .button1:hover{
-  background-color: #ef402f;
-  color: white;
+  /* background-color: white; */
+  border: white 1px solid;
+
+  color: #4394d3;
  }
+ input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
+}
 
 
 
@@ -362,4 +371,7 @@ background-color: #ef402f;
   border-collapse:collapse;
   margin-left:140px;
   padding:10px;
+}
+.fa-user-o:before {
+  font-size: 70px;
 }

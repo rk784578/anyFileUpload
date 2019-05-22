@@ -3,15 +3,15 @@
 </div>
 
 
+<section id="intro" style="background-image:url('images/img/intro/1.jpg')">
 
-<div class="container" style="background: white">
-  <br>
-  <br>
-  <div>{{message}} </div>
-  <br>
-  <br>
 
-  <div class="col-md-11 col-sm-11" ng:show="dataTable">
+<div class="container" >
+    <div class="alert alert-success" ng:show="message.length >0" style="margin-top: 30px;">
+        <strong>{{message}}</strong>
+      </div>
+
+  <div class="col-md-12 col-sm-12" ng:show="dataTable" style="margin-top: 30px;">
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead class="th">
@@ -29,10 +29,10 @@
             <td>{{x.mobileNumber}}</td>
             <td>
               <span ng-if="x.state !== 'inActive' ">
-                <button type="button" class="btn btn-primary" style="background: #4394d3;" ng:click="activateOrDiactivate(x,$index)">{{x.state}}</button>
+                <button type="button" style="background: transparent !important" class="btn btn-primary activeButton" style="background: #4394d3;" ng:click="activateOrDiactivate(x,$index)"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
               </span>
               <span ng-if="x.state === 'inActive' ">
-                <button type="button" class="btn btn-default" style="background: #ef402f;" ng:click="activateOrDiactivate(x,$index)">{{x.state}}</button>
+                <button type="button" style="background: transparent !important;color: white" class="btn btn-default deactiveButton" style="background: #ef402f;" ng:click="activateOrDiactivate(x,$index)"><i class="fa fa-user-times" aria-hidden="true"></i></button>
               </span>
             </td>
             <!-- <td>
@@ -44,3 +44,5 @@
     </div>
   </div>
 </div>
+
+</section>

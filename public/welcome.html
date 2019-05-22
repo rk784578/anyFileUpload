@@ -3,56 +3,71 @@
 </div>
 
 <!-- Content Here -->
-<div class="form">
-    <div class="haed">
-        <h1>Advance File Transfer System</h1>
-    </div>
-
-    <div class="tab-content">
-
-
-        <div id="signup">
-            <form action="/upload" method="post" enctype="multipart/form-data">
-
-                <div class="field">
-                    <input type="file" name="VideoToUpload" id="VideoToUpload" placeholder=" " >
-                    <label for="VideoToUpload">Select Files to upload
-                        <span style="color:red">{{nameError}}</span>
-                    </label>
-                </div>
-                <div class="field">
-                        <input type="text" name="Subject" id="Subject" ng-model="Subject" placeholder=" ">
-                        <label for="Subject">Subject
-                            <span style="color:red">{{nameError}}</span>
-                        </label>
-                    </div> 
-                    <div class="field">
-                            <input type="text" name="Message" id="Message" ng-model="Message" placeholder=" ">
-                            <label for="Message">Message
-                                <span style="color:red">{{nameError}}</span>
-                            </label>
+<section id="intro">
+        <div class="intro-container">
+          <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+      
+            <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <div class="carousel-background"><img src="images/img/intro/1.jpg" alt=""></div>
+        <div class="carousel-container">
+          <div class="row" style="width: 100%;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                    <div class="form" style="padding: 0px 25px">
+                            <div class="haed">
+                                <h1>Advance File Transfer System</h1>
+                            </div>
+                                    <form action="/upload" method="post" enctype="multipart/form-data" autocomplete="off">
+                        
+                                        <div class="field">
+                                            <input type="file" name="VideoToUpload" id="VideoToUpload" placeholder=" " >
+                                            <label for="VideoToUpload">Select Files to upload
+                                                <span style="color:red">{{nameError}}</span>
+                                            </label>
+                                        </div>
+                                        <div class="field">
+                                                <input type="text" name="Subject" id="Subject" ng-model="Subject" placeholder=" ">
+                                                <label for="Subject">Subject
+                                                    <span style="color:red">{{nameError}}</span>
+                                                </label>
+                                            </div> 
+                                            <div class="field">
+                                                    <input type="text" name="Message" id="Message" ng-model="Message" placeholder=" ">
+                                                    <label for="Message">Message
+                                                        <span style="color:red">{{nameError}}</span>
+                                                    </label>
+                                                </div>
+                        
+                                        <span style="color: red;">{{existingUserOrNotCheck}}</span>
+                                        <button type="submit" class="button1" value="Upload" name="submit">
+                                            Upload &nbsp;
+                                                <img src="/icon/postLoader.gif" ng:show="loadder">
+                                            
+                                        </button>
+                        
+                                    </form>
+                        
+                               
+                        
+                        
+                                <form>
+                        
+                                </form>
+                        
+                            
+                        
                         </div>
+            </div>
+            <div class="col-md-3"></div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>
 
-                <span style="color: red;">{{existingUserOrNotCheck}}</span>
-                <button type="submit" class="btn btn-primary" value="Upload" name="submit">
-                    <b>Upload &nbsp;
-                        <img src="/icon/postLoader.gif" ng:show="loadder">
-                    </b>
-                </button>
-
-            </form>
-
-        </div>
-
-
-
-        <form>
-
-        </form>
-
-    </div>
-
-</div>
 <!-- tab-content -->
 
 <!-- 

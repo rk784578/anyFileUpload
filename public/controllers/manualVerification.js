@@ -44,7 +44,7 @@ mainapp.controller('manualVerificationController', ['$scope',
 
     $scope.activateOrDiactivate = function (val, $index) {
 
-
+      $scope.message ="";
       val.state = (val.state == 'inActive') ? 'active' : 'inActive';
      // console.log(val);
 
