@@ -95,6 +95,7 @@ input {
   padding: 0 0 5px 0;
   cursor: text;
   background: transparent;
+  color: white;
 }
 
 input:focus {
@@ -280,11 +281,7 @@ background-color: #ef402f;
   text-decoration: none;
   color:white ;
   display: inline-block;
-  font-size: 18px;
   padding:5px;
-  top:50%;
-  left:40%;
-  margin-top: 30px;
   border-radius: 5px;
   cursor:pointer;
   position:relative;

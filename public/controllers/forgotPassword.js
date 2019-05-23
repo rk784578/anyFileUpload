@@ -14,7 +14,7 @@ mainapp.controller('forgotPasswordController', ['$scope',
 
 	// if the user wants to go back  in to login page 
 	 $scope.goBackToLoginPage = function() {
-		 $location.path('/signUp');
+		 $location.path('/login');
 	}
 	 $scope.goBackToLogin= false;
 

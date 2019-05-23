@@ -1,161 +1,159 @@
+<section class="registerBack" style="background-image:url('images/img/intro/1.jpg');">
 
-<div class="form">
-    <div class="haed">
-      <h1>Advance File Transfer System</h1>
-      </div>
-      <!-- <ul class="tab-group">
-        <li class="tab active"><a href="">Sign Up</a></li>
-        <li class="tab"><a href="login">Log In</a></li>
-      </ul> -->
+  <div class="form" style="padding: 15px">
+      <div class="haed">
+        <h1>Registration Form</h1>
+        </div>
+        <div class="tab-content">
       
-      <div class="tab-content">
-	  
-	  
-        <div id="signup">   
-		  <form>
-         
-		<div class="field">
-    <input type="text" name="userName" id="userName" ng-model="userName" placeholder=" " ng:change="onchange()" >
-    <label for="userName">User Name <span style="color:red">{{nameError}}</span></label>
-  </div>
-
-  <div class="field">
-    <input type="text" name="fullname" id="fullname" ng-model="fullName" placeholder=" " ng:change="onchange()" >
-    <label for="fullname">Full Name <span style="color:red">{{fullNameError}}</span></label>
-  </div>
-
-   <div class="field">
-  <input type="password" name="password" id="password" ng-model="password" placeholder=" " ng:change="onchange()">
-    <label for="password">Password<span style="color:red">{{passwordError}}</span></label>
-  </div>
-  <div class="field">
-          <select type="text" class="floatings-select" onclick="this.setAttribute('value', this.value);" value="" ng-model="profile" style="margin-top: 0px;" placeholder=".">
-           <!-- <option value="" style="color: rgba(219,213,213,1.00)!important;">Select Sector</option> -->
-            <option value="reporters">Reporters</option>
-            <option value="stingers">Stingers</option>
-            <option value="editors">Editors</option>
-            <option value="guests">Guests</option>
-            <option value="web">WEB</option>
-            <option value="It">IT</option>
-            <option value="desk">Desk</option>
-            <option vlaue="coordination">Coordination</option>
-
-          </select>
-          <span class="highlight"></span>
-          <labels for="select1" style="text-align: left;padding-left: 5px;font-weight: 700">Profile Category</labels>
-        </div>
-  <div class="field">
-          <select type="text" class="floatings-select" onclick="this.setAttribute('value', this.value);" value="" ng-model="district" style="margin-top: 0px;" placeholder=".">
-           <!-- <option value="" style="color: rgba(219,213,213,1.00)!important;">Select Sector</option> -->
-            <option value="AndhraPradesh">---Andhra Pradesh----</option>
-            <option value="krishna">Krishna</option>
-            <option value="westGodavari">West Godavari</option>
-            <option value="anantapur">Anantapur</option>
-            <option value="chittoor">Chittoor</option>
-            <option value="eastGodavari">East Godavari</option>
-            <option value="guntur">Guntur</option>
-            <option value="kadapa">Kadapa</option>
-            <option value="kurnool">Kurnool</option>
-            <option value="nellore">Nellore</option>
-            <option value="prakasam">Prakasam</option>
-            <option value="srikakulam">Srikakulam</option>
-            <option value="visakhapatnam">Visakhapatnam</option>
-            <option value="vizianagaram">Vizianagaram</option>
-            <option value="Telangana">---Telangana---</option>
-            <option value="Adilabad">Adilabad</option> 
-            <option value="Asifabad">Asifabad</option> 
-            <option value="Bhadradri">Bhadradri</option>
-            <option value="Hyderabad">Hyderabad</option> 
-            <option value="Jagtial">Jagtial</option> 
-            <option value="Jangaon">Jangaon</option>
-            <option value="Jayashankar">Jayashankar</option> 
-            <option value="Jogulamba">Jogulamba</option> 
-            <option value="Kamareddy">Kamareddy</option> 
-            <option value="Karimnagar">Karimnagar</option> 
-            <option value="Khammam">Khammam</option> 
-            <option value="Mahabubabad">Mahabubabad</option> 
-            <option value="Mahbubnagar">Mahbubnagar</option> 
-            <option value="Mancherial">Mancherial</option> 
-            <option value="Medak">Medak</option> 
-            <option value="medchalMalkajgiri">Medchal–Malkajgiri</option> 
-            <option value="Nagarkurnool">Nagarkurnool</option> 
-            <option value="Nalgonda">Nalgonda</option> 
-            <option value="Nirmal">Nirmal</option> 
-            <option value="Nizamabad">Nizamabad</option> 
-            <option value="Peddapalli">Peddapalli</option> 
-            <option value="rajannaSircilla">Rajanna Sircilla</option> 
-            <option value="rangaReddy">Ranga Reddy</option> 
-            <option value="Sangareddy">Sangareddy</option> 
-            <option value="Siddipet">Siddipet</option> 
-            <option value="Suryapet">Suryapet</option> 
-            <option value="Vikarabad">Vikarabad</option> 
-            <option value="Wanaparthy">Wanaparthy</option> 
-            <option value="warangalRural">Warangal (rural)</option> 
-            <option value="warangalUrban">Warangal (urban)</option> 
-            <option value="Yadadri">Yadadri</option>
-            <option value="Other">----Other---</option>
-
-            
-          </select>
-          <span class="highlight"></span>
-          <labels for="select1" style="text-align: left;padding-left: 5px;font-weight: 700">District Category</labels>
-        </div>
-  <div class="field">
-    <input type="text" name="designation" id="designation" ng-model="designation" placeholder=""  ng:change="onchange()">
-    <label for="designation">Designation<span style="color:red">{{companyNameError}}</span></label>
-  </div>
-
-   <div class="field">
-    <input type="text" name="empID" id="empID" ng-model="empID" placeholder=""  ng:change="onchange()">
-    <label for="empID">Emp ID<span style="color:red">{{companyNameError}}</span></label>
-  </div>
-
-  <div class="field">
-    <input type="number" name="Mobile" id="Mobile" ng-model="mobileNumber" placeholder=" "  ng:change="onchange()"  >
-    <label for="Mobile">Mobile <span style="color:red">{{nobileNumberError}}</span></label>
-  </div>
-
+      
+          <div id="signup">   
+        <form>
+           
+      <div class="field">
+      <input type="text" name="userName" id="userName" ng-model="userName" placeholder=" " ng:change="onchange()" >
+      <label for="userName">User Name <span style="color:red">{{nameError}}</span></label>
+    </div>
+  
     <div class="field">
-    <input type="email" name="email" id="email" ng-model="email" placeholder=""  ng:change="onchange()" >
-    <label for="email">Email<span style="color:red">{{emailError}}</span></label>
-  </div>
+      <input type="text" name="fullname" id="fullname" ng-model="fullName" placeholder=" " ng:change="onchange()" >
+      <label for="fullname">Full Name <span style="color:red">{{fullNameError}}</span></label>
+    </div>
   
-   
-
-<span style="color: red;">{{existingUserOrNotCheck}}</span>
-  <button type="submit" ng-click="submit()" class="button1" ><b>Submit &nbsp;<img src="/icon/postLoader.gif" ng:show="loadder"></b></button>
+     <div class="field">
+    <input type="password" name="password" id="password" ng-model="password" placeholder=" " ng:change="onchange()">
+      <label for="password">Password<span style="color:red">{{passwordError}}</span></label>
+    </div>
+    <div class="field">
+            <select type="text" class="floatings-select" onclick="this.setAttribute('value', this.value);" value="" ng-model="profile" style="margin-top: 0px;" placeholder=".">
+             <!-- <option value="" style="color: rgba(219,213,213,1.00)!important;">Select Sector</option> -->
+              <option value="reporters">Reporters</option>
+              <option value="stingers">Stingers</option>
+              <option value="editors">Editors</option>
+              <option value="guests">Guests</option>
+              <option value="web">WEB</option>
+              <option value="It">IT</option>
+              <option value="desk">Desk</option>
+              <option vlaue="coordination">Coordination</option>
+  
+            </select>
+            <span class="highlight"></span>
+            <labels for="select1" style="text-align: left;padding-left: 5px;font-weight: 700">Profile Category</labels>
+          </div>
+    <div class="field">
+            <select type="text" class="floatings-select" onclick="this.setAttribute('value', this.value);" value="" ng-model="district" style="margin-top: 0px;" placeholder=".">
+             <!-- <option value="" style="color: rgba(219,213,213,1.00)!important;">Select Sector</option> -->
+              <option value="AndhraPradesh">---Andhra Pradesh----</option>
+              <option value="krishna">Krishna</option>
+              <option value="westGodavari">West Godavari</option>
+              <option value="anantapur">Anantapur</option>
+              <option value="chittoor">Chittoor</option>
+              <option value="eastGodavari">East Godavari</option>
+              <option value="guntur">Guntur</option>
+              <option value="kadapa">Kadapa</option>
+              <option value="kurnool">Kurnool</option>
+              <option value="nellore">Nellore</option>
+              <option value="prakasam">Prakasam</option>
+              <option value="srikakulam">Srikakulam</option>
+              <option value="visakhapatnam">Visakhapatnam</option>
+              <option value="vizianagaram">Vizianagaram</option>
+              <option value="Telangana">---Telangana---</option>
+              <option value="Adilabad">Adilabad</option> 
+              <option value="Asifabad">Asifabad</option> 
+              <option value="Bhadradri">Bhadradri</option>
+              <option value="Hyderabad">Hyderabad</option> 
+              <option value="Jagtial">Jagtial</option> 
+              <option value="Jangaon">Jangaon</option>
+              <option value="Jayashankar">Jayashankar</option> 
+              <option value="Jogulamba">Jogulamba</option> 
+              <option value="Kamareddy">Kamareddy</option> 
+              <option value="Karimnagar">Karimnagar</option> 
+              <option value="Khammam">Khammam</option> 
+              <option value="Mahabubabad">Mahabubabad</option> 
+              <option value="Mahbubnagar">Mahbubnagar</option> 
+              <option value="Mancherial">Mancherial</option> 
+              <option value="Medak">Medak</option> 
+              <option value="medchalMalkajgiri">Medchal–Malkajgiri</option> 
+              <option value="Nagarkurnool">Nagarkurnool</option> 
+              <option value="Nalgonda">Nalgonda</option> 
+              <option value="Nirmal">Nirmal</option> 
+              <option value="Nizamabad">Nizamabad</option> 
+              <option value="Peddapalli">Peddapalli</option> 
+              <option value="rajannaSircilla">Rajanna Sircilla</option> 
+              <option value="rangaReddy">Ranga Reddy</option> 
+              <option value="Sangareddy">Sangareddy</option> 
+              <option value="Siddipet">Siddipet</option> 
+              <option value="Suryapet">Suryapet</option> 
+              <option value="Vikarabad">Vikarabad</option> 
+              <option value="Wanaparthy">Wanaparthy</option> 
+              <option value="warangalRural">Warangal (rural)</option> 
+              <option value="warangalUrban">Warangal (urban)</option> 
+              <option value="Yadadri">Yadadri</option>
+              <option value="Other">----Other---</option>
+  
+              
+            </select>
+            <span class="highlight"></span>
+            <labels for="select1" style="text-align: left;padding-left: 5px;font-weight: 700">District Category</labels>
+          </div>
+    <div class="field">
+      <input type="text" name="designation" id="designation" ng-model="designation" placeholder=""  ng:change="onchange()">
+      <label for="designation">Designation<span style="color:red">{{companyNameError}}</span></label>
+    </div>
+  
+     <div class="field">
+      <input type="text" name="empID" id="empID" ng-model="empID" placeholder=""  ng:change="onchange()">
+      <label for="empID">Emp ID<span style="color:red">{{companyNameError}}</span></label>
+    </div>
+  
+    <div class="field">
+      <input type="number" name="Mobile" id="Mobile" ng-model="mobileNumber" placeholder=" "  ng:change="onchange()"  >
+      <label for="Mobile">Mobile <span style="color:red">{{nobileNumberError}}</span></label>
+    </div>
+  
+      <div class="field">
+      <input type="email" name="email" id="email" ng-model="email" placeholder=""  ng:change="onchange()" >
+      <label for="email">Email<span style="color:red">{{emailError}}</span></label>
+    </div>
+    
+     
+  
+  <span style="color: red;">{{existingUserOrNotCheck}}</span>
+    <button type="submit" ng-click="submit()" class="button1 pull-right" >Submit &nbsp;<img src="/icon/postLoader.gif" ng:show="loadder"></button>
+            
+    <p style="text-align: left;    margin-left: 25px;margin-top: 25px;padding-bottom: 10px;
+  " class="forgot" ><a href="login">Existing user</a></p>
+            </form>
+            
+  {{successMessage}}
+  
+          </div>
           
-  <p style="text-align: left;    margin-left: 25px;padding-bottom: 10px;
-" class="forgot" ><a href="login">Existing user</a></p>
-          </form>
-          
-{{successMessage}}
-
-        </div>
-        
-		
-		
-
-  <div id="login">   
- <h1>Welcome Back!</h1>
- <form>
- 
-  <div class="field">
-    <input type="text" name="email" id="email1" ng-model="userName" placeholder=" " >
-    <label for="email1">Email Address</label>
-  </div>
-		 
-  
-  <p style="text-align: right;" class="forgot"><a href="#forgotPasswordPage">Forgot Password?</a></p>
-  
-  <button type="submit" value="login" ng-click="login()" class="button1">
-         <b>Login</b>
-  </button>
-  
-          </form>
-
-        </div>
-        
-      </div><!-- tab-content -->
       
-</div>
+      
+  
+    <div id="login">   
+   <h1>Welcome Back!</h1>
+   <form>
+   
+    <div class="field">
+      <input type="text" name="email" id="email1" ng-model="userName" placeholder=" " >
+      <label for="email1">Email Address</label>
+    </div>
+       
+    
+    <p style="text-align: right;" class="forgot"><a href="#forgotPasswordPage">Forgot Password?</a></p>
+    
+    <button type="submit" value="login" ng-click="login()" class="button1">
+           Login
+    </button>
+    
+            </form>
+  
+          </div>
+          
+        </div><!-- tab-content -->
+        
+  </div>
+</section>
+ 

@@ -469,3 +469,15 @@ width: 64%;
 .deactiveButton:hover{
   color: #ef402f !important;
 }
+.registerBack{
+  
+  padding-bottom: 25px;
+  padding-top: 5px;
+  background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.floatings-select{
+  background: transparent;
+  color: white;
+}

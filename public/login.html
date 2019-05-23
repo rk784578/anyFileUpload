@@ -37,11 +37,12 @@
             
               <p style="text-align: right;" class="forgot" ><a href="#forgotPasswordPage" ng-click="forgotPassword()">Reset Password?</a></p>
               <div class="row" style="margin-right: 30px;">
-                    <a value="signUp" class="button1" href="signUp" style="text-decoration: none">signUp</a>
+                <button type="submit" value="login" ng-click="login()" class="button1 pull-right" style="margin-top: -5px;">
+                  Login<img src="./icon/postLoader.gif" ng:show="loader">
+           </button>
+                    <a value="signUp" class="button1 pull-right" href="signUp" style="text-decoration: none;margin: -5px 5px;">signUp</a>
                   
-                <button type="submit" value="login" ng-click="login()" class="button1" style="margin-top: -5px;">
-                       Login<img src="./icon/postLoader.gif" ng:show="loader">
-                </button>
+                
             
               </div>
               <!-- <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p> -->
