@@ -27,17 +27,27 @@
                                             </label>
                                         </div>
                                         <div class="field">
-                                                <input type="text" name="Subject" id="Subject" ng-model="Subject" placeholder=" ">
-                                                <label for="Subject">Subject
+                                                <input type="text" name="subject" ng-model="data.subject" placeholder=" ">
+                                                <label for="subject">Subject
                                                     <span style="color:red">{{nameError}}</span>
                                                 </label>
                                             </div> 
                                             <div class="field">
-                                                    <input type="text" name="Message" id="Message" ng-model="Message" placeholder=" ">
-                                                    <label for="Message">Message
+                                                    <input type="text" name="message" ng-model="data.message" placeholder=" ">
+                                                    <label for="message">Message
                                                         <span style="color:red">{{nameError}}</span>
                                                     </label>
                                                 </div>
+
+                                            <div style="display: none">
+                            <input type="text" name="district" ng-model="data.district">
+                            <input type="text" name="name" ng-model="data.name">
+                            <input type="text" name="mobileNumber" ng-model="data.mobileNumber">
+                            <input type="text" name="designation" ng-model="data.designation">
+                            <input type="text" name="empID" ng-model="data.empID">
+                            <input type="text" name="email" ng-model="data.email">
+                            <input type="text" name="profile" ng-model="data.profile">
+                        </div>     
                         
                                         <span style="color: red;">{{existingUserOrNotCheck}}</span>
                                         <button type="submit" class="button1" value="Upload" name="submit">

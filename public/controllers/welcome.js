@@ -23,8 +23,11 @@ mainapp.controller('welcomeController', ['$scope',
         designation : $scope.loginData.designation,
         empID : $scope.loginData.empID,
         email : $scope.loginData.email,
-        profile : $scope.loginData.profileCategory
-        } 
+        profile : $scope.loginData.profileCategory,
+        subject: $scope.Subject,
+        message: $scope.Message
+        }
+
         console.log($scope.data);
         
         
