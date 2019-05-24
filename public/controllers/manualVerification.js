@@ -21,7 +21,7 @@ mainapp.controller('manualVerificationController', ['$scope',
     $scope.unActivedData = [];
     $scope.uploadData = [];
     function signUpActivation() {
-      $scope.message = "Fetching Data ........"
+      //$scope.message = "Fetching Data ........"
       $http.post('/getUnactivatedData').success(function (data) {
         //console.log(data);
         for (var i = 0; i < data.length; i++) {
@@ -49,7 +49,7 @@ mainapp.controller('manualVerificationController', ['$scope',
      // console.log(val);
 
       $http.post('/updateLoginUser', val).success(function (res) {
-       $scope.message = res + '..............';
+       //$scope.message = res + '..............';
         console.log(res);
       }).error(function () {
 

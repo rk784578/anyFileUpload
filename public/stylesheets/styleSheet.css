@@ -478,6 +478,6 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 .floatings-select{
-  background: transparent;
-  color: white;
+  background: white;
+  color: grey;
 }
