@@ -56,7 +56,7 @@ mainapp.config(function ($routeProvider,$locationProvider) {
                 templateUrl: '../site.html'
             })     
         .otherwise({
-            redirectTo: '/website'
+            redirectTo: '/login'
         });
         $locationProvider.html5Mode(true);
 });

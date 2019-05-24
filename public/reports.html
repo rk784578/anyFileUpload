@@ -2,7 +2,7 @@
   <div ng-include='template.navmenu'></div>
 </div>
 
-<section id="intro" style="background-image:url('images/img/intro/1.jpg')">
+<section id="intro" style="background-image:url('images/img/intro/3.jpg')">
   <div class="row">
 <div class="col-sm-6">
     <div class="input-group date pull-right" style="margin-top: 17px;">
@@ -33,6 +33,7 @@
       <table class="table table-bordered" id="tableToExport">
         <thead class="th">
           <tr>
+            <td>S.NO</td>
             <td>Upload Date</td>
             <td>District</td>
             <td>Subject</td>
@@ -49,6 +50,7 @@
         </thead>
         <tbody class="tb">
           <tr ng:repeat="x in upload | orderBy:'timestamp' track by $index">
+            <td>{{$index + 1}}</td>
             <td>{{x.date | numberToDate}}</td>
             <td>{{x.district}}</td>
             <td>{{x.subject}}</td>
