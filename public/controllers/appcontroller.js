@@ -56,7 +56,7 @@ mainapp.config(function ($routeProvider,$locationProvider) {
                 templateUrl: '../site.html'
             })     
         .otherwise({
-            redirectTo: '/login'
+            redirectTo: '/website'
         });
         $locationProvider.html5Mode(true);
 });
@@ -317,7 +317,8 @@ mainapp.factory('$global', function () {
 
 mainapp.controller('NavController', ['$scope', '$global', '$http', function ($scope, $global, $http) {
     $scope.template = {
-        navmenu: 'nav.html'
+        navmenu: 'nav.html',
+        footer:'footer.html'
     };
 
 

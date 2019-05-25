@@ -3,26 +3,25 @@
 </div>
 
 <section id="intro" style="background-image:url('images/img/intro/3.jpg')">
-  <div class="row">
-<div class="col-sm-6">
-    <div class="input-group date pull-right" style="margin-top: 17px;">
+  <div class="row" align="center">
+    <div class="input-group date" style="margin-top: 17px;">
         <div class="input-group date"> <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
           </span>
           <input type="date" class="form-control input-sm" ng-model="date" ng-change="uploadedData(date)" />
+        
         </div>
-      </div>
-</div>
-<div class="col-sm-2">
-    <div class="input-group date">
-        <button type="button" class=" btn btn-success btn-sm" ng-click=" exportToExcel('#tableToExport')"
-          style="margin-top: 16px;">
-          Download Report
-        </button>
-      </div>
-</div>
-<div class="col-sm-4">
+        <span>
 
-</div>
+          <button type="button" class=" button1 btn-lg" ng-click=" exportToExcel('#tableToExport')"
+          style="margin-top: -50px;margin-left: 270px;">
+          <span class="glyphicon glyphicon-download-alt"></span>
+        </button>
+        <button type="button" class=" button1 btn-lg" style="margin-top: -50px;">
+        <span class="glyphicon glyphicon-print"></span>
+      </button>
+        
+        </span>
+      </div>
   </div>
 
 
@@ -72,4 +71,7 @@
     </div>
   </div>
 </div>
+<div ng-controller='NavController' class="footernotsite">
+    <div ng-include='template.footer'></div>
+  </div>
 </section>

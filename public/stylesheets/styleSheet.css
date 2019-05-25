@@ -481,3 +481,10 @@ background-size: cover;
   background: white;
   color: grey;
 }
+.footernotsite{
+ background: #353535;
+ position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

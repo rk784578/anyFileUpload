@@ -199,10 +199,10 @@ input:focus + label {
   width: 100%;
 }
 
-.forgot {
+/* .forgot {
   padding-right: 10px;
   width: 100% !important;
-}
+} */
 
 /* .button1{
   background-color: #2276e4;
@@ -265,8 +265,10 @@ background-color: #ef402f;
 }
 
 .forgot {
-  margin-top: -20px;
-  text-align: right;
+  margin-top: 20px !important;
+  text-align: left;
+  padding-left: 10px;
+  width: 100% !important;
 }
 
 
