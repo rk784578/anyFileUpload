@@ -70,7 +70,7 @@ mainapp.controller('loginController', ['$scope',
 						$scope.whiznextLoader = false;
 						$scope.loader = false;
 					
-						$scope.userValidationError = "Invalid UserName and Password";
+						$scope.userValidationError = "Invalid username or password.";
 						
 					}else{
 					
