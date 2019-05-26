@@ -25,6 +25,7 @@ mainapp.controller('reportController', ['$scope',
         //$scope.uploadData = [];
 
         $scope.uploadedData = function (val) {
+            $scope.upload = [];
             $scope.message = "Fetching Data ......";
             $scope.afterData = false;
             fetchData(val)
