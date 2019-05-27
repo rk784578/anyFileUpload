@@ -37,7 +37,7 @@
             <td>District</td>
             <td>Subject</td>
             <td>Message</td>
-            <td>File Name</td>
+            <td align="center">File Name</td>
             <td>Name</td>
             <td>Profile</td>
             <td>Designation</td>
@@ -54,7 +54,7 @@
             <td>{{x.district}}</td>
             <td>{{x.subject}}</td>
             <td>{{x.message}}</td>
-            <td>{{x.uploadFile.filename}}
+            <td><div class="popover-wrapper" style="font-size: 12px!important;" ng:repeat="y in x.uploadFile">{{y.filename}},</div></td>
             <td>{{x.name}}</td>
             <td>{{x.profile}}</td>
             <td>{{x.designation}}</td>
