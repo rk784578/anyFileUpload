@@ -199,8 +199,9 @@ function fileFilter (req, file, cb) {
 var upload = requriedNodeModules.multer({ storage: storage ,fileFilter:fileFilter});
 
 
-app.post('/upload', upload.single('VideoToUpload'), function(req, res) {
-    //console.log('File here',req.file);
+app.post('/upload', upload.array('VideoToUpload',10), function(req, res) {
+    console.log('File here',req.files);
+    //console.log("Upload", upload.array('VideoToUpload'));
     //console.log("upload Data", {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body, timestamp:dateAndTime(new Date()) 
 //})
 
@@ -211,7 +212,7 @@ app.post('/upload', upload.single('VideoToUpload'), function(req, res) {
 requriedNodeModules.request({
   uri:URL,
   method:"POST",
-  json: {     uploadFile:req.file, date: convertDateToInteger(new Date()),
+  json: {     uploadFile:req.files, date: convertDateToInteger(new Date()),
               type: "upload",
               message:req.body.message, 
               subject:req.body.subject, 
@@ -240,7 +241,7 @@ requriedNodeModules.request({
 
     //console.log(req.params);
     //res.send("uploading your file.");
-    if (req.file) {
+    if (req.files) {
         console.log("successfully received");
         res.send({success: "success"});
     }

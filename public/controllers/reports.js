@@ -26,27 +26,30 @@ mainapp.controller('reportController', ['$scope',
 
         $scope.uploadedData = function (val) {
             $scope.upload = [];
+            $scope.uploadFileName = [];
             $scope.message = "Fetching Data ......";
             $scope.afterData = false;
             fetchData(val)
         }
 
         $scope.upload = [];
+        //$scope.uploadFileName = [];
 
 
         function fetchData(val) {
             var date = $scope.date;
             $http.post('/getUploadData', { date: $scope.date }).success(function (data) {
 
-                console.log(data);
+                //console.log(data);
                 if(! data.total_rows == 0){
 
                 
                 for (var i = 0; i < data.rows.length; i++) {
-
                     $scope.upload.push(data.rows[i].doc);
                     console.log($scope.upload);
+                  
                 }
+
                 $scope.message = "";
                 $scope.afterData = true;
             }
