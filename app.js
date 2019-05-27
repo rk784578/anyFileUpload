@@ -328,9 +328,9 @@ requriedNodeModules.request({
 
 // start server on the specified port and binding host
 // This is for local testing  
-app.listen(appEnv.port, '0.0.0.0', function () {
+//app.listen(appEnv.port, '0.0.0.0', function () {
   // this is for prod ctrl un comment and push 
-//app.listen(80, '120.138.9.151', function() { 
+app.listen(80, '0.0.0.0', function() { 
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
 });
