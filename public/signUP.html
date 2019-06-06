@@ -1,15 +1,12 @@
-<section class="registerBack" style="background-image:url('images/img/intro/1.jpg');">
+<div class="registerBack" style="background-image:url('images/img/intro/1.jpg');">
 
   <div class="form" style="padding: 15px;padding-bottom: 40px">
     <div class="haed">
       <h1>Registration Form</h1>
     </div>
-    <div class="tab-content">
-
-
       <div id="signup">
         <!-- <form > -->
-
+<form style="width: 93%">
           <div class="field">
             <input type="text" name="userName" id="userName" placeholder=" "  ng-model="userName" ng:change="onchange()">
             <label for="userName">Username <span style="color:red">{{nameError}}</span></label>
@@ -130,22 +127,14 @@
         <!-- </form> -->
 
         {{successMessage}}
-
+</form>
       </div>
 
 
 
-
-      <div id="login">
-        <h1>Welcome Back!</h1>
-      
-
-      </div>
-
-    </div><!-- tab-content -->
 
   </div>
   <div ng-controller='NavController' class="footernotsite">
       <div ng-include='template.footer'></div>
     </div>
-</section>
+</div>
