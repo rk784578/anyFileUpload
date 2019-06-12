@@ -21,11 +21,11 @@ mainapp.controller('signUpController', ['$scope',
 			$scope.other = false;
 			$scope.districtList = false; 
 
-			if ($scope.district == "ap") {
+			if ($scope.districtLi == "apT") {
 				$scope.ap = true;
 				$scope.districtList = true; 
 			}
-			else if ($scope.district == "ts") {
+			else if ($scope.districtLi == "tsT") {
 				$scope.ts = true;
 				$scope.districtList = true; 
 			} else {
@@ -127,6 +127,7 @@ mainapp.controller('signUpController', ['$scope',
 				designation: $scope.designation,
 				empID: $scope.empID,
 				profileCategory: $scope.profile,
+			    districtHead:$scope.districtLi,
 				districtCategory: $scope.district,
 				mobileNumber: $scope.mobileNumber,
 				email: $scope.email,
