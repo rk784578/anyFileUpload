@@ -864,7 +864,18 @@ more media queries
 	}
 
 }
-
+.signup {
+	margin: 0px !important;
+        margin-top: -20px;
+        padding: 10px;
+        padding-bottom: 45px;
+}
+.signup .field{
+	margin-bottom: 2px;
+}
+.row{
+	margin-left: 0px !important;
+}
 @media (max-width:480px){
 
 	header .carousel-iphone, .detail .screenshot{
