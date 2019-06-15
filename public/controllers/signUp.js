@@ -3,13 +3,36 @@ mainapp.controller('signUpController', ['$scope',
 	'$location',
 	'$http',
 	'$global',
-	
+
 	function ($scope,
 		$location,
 		$http,
 		$global
 	) {
 
+
+
+
+		// on select district 
+		$scope.onSelectDistrict = function () {
+			console.log("district", $scope.district);
+			$scope.ap = false;
+			$scope.ts = false;
+			$scope.other = false;
+			$scope.districtList = false; 
+
+			if ($scope.districtLi == "apT") {
+				$scope.ap = true;
+				$scope.districtList = true; 
+			}
+			else if ($scope.districtLi == "tsT") {
+				$scope.ts = true;
+				$scope.districtList = true; 
+			} else {
+				$scope.other = true;
+				$scope.districtList = false; 
+			}
+		};
 
 		// if the user already in the exits giving option to go back 
 
@@ -22,11 +45,9 @@ mainapp.controller('signUpController', ['$scope',
 			$location.path('forgotPasswordPage');
 		};
 
-		
-
 		$scope.submit = function () {
-			
-                 //console.log(" log 1",$scope.company);
+
+			//console.log(" log 1",$scope.company);
 			if ($scope.userName == undefined || $scope.userName == null || $scope.userName == "") {
 				$scope.nameError = " Enter your userName";
 			} else if ($scope.mobileNumber == undefined || $scope.mobileNumber == null || $scope.mobileNumber == "") {
@@ -42,21 +63,21 @@ mainapp.controller('signUpController', ['$scope',
 				// save the user in the DB  if exitsing  it wnt save the data 
 				// this function will check the whether the user existing or not. 
 				fetchExistingOrNewUser();
-				
+
 			}
 		};
 		// validating  for user email already exits or not 				
 		function fetchExistingOrNewUser() {
 			//console.log("log 2  ",$scope.company);
-	
+
 			// var URL = $global.getApiHost() + "uploadanyregisterandlogin/" + "_design/uploadAny/_search/fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + $scope.userName +'\"' + '&include_docs=true';
-   //           console.log(URL);
-			
+			//           console.log(URL);
+
 			//console.log("API : " + URL);
 
-			$http.post('/getEmployeeDetails',{userName:$scope.userName})
+			$http.post('/getEmployeeDetails', { userName: $scope.userName })
 				.success(function (data, status) {
-					console.log("####",data + status);
+					console.log("####", data + status);
 					// once user  exits  give true or false status  
 					//console.log("data.body.length",data.body.length); 
 					$scope.validatingExistingUserOrNot = data == '0' ? false : true;
@@ -66,7 +87,7 @@ mainapp.controller('signUpController', ['$scope',
 					//console.log("log 3",$scope.company);
 				})
 				.error(function (data, status) {
-					console.log("error",data,status)
+					console.log("error", data, status)
 					// if (status == -1) {
 					// 	$scope.validatingExistingUserOrNot = true;
 					// 	validation()
@@ -98,27 +119,29 @@ mainapp.controller('signUpController', ['$scope',
 		function saveUser() {
 			$scope.loadder = true;
 			//console.log("log 5 ",$scope.company);
-			 var data = {
-					_id: $scope.userName,
-					name: $scope.userName,
-					fullName: $scope.fullName,
-					password: $scope.password,
-					designation: $scope.designation,
-					empID: $scope.empID,
-					profileCategory: $scope.profile,
-					districtCategory: $scope.district,
-					mobileNumber: $scope.mobileNumber,
-					email: $scope.email,
-					status: "normalSignUp",
-					contact: "login",
-					state: "inActive",
-					condition: $scope.userName,
-					emailVerification: "verified"
-				};
+			var data = {
+				_id: $scope.userName,
+				name: $scope.userName,
+				fullName: $scope.fullName,
+				password: $scope.password,
+				designation: $scope.designation,
+				empID: $scope.empID,
+				profileCategory: $scope.profile,
+			    districtHead:$scope.districtLi,
+				districtCategory: $scope.district,
+				mobileNumber: $scope.mobileNumber,
+				email: $scope.email,
+				districtOther:$scope.districtOther,
+				status: "normalSignUp",
+				contact: "login",
+				state: "inActive",
+				condition: $scope.userName,
+				emailVerification: "verified"
+			};
 			//}
 			$scope.whiznextLoader = true;
-			
-			
+
+
 			//console.log( "API : " + URL);
 			console.log("Data passed to the API call: " + data);
 
@@ -137,7 +160,7 @@ mainapp.controller('signUpController', ['$scope',
 
 				});
 		}
-		
+
 		$scope.onchange = function () {
 			$scope.existingUserOrNotCheck = "";
 			$scope.nameError = "";
