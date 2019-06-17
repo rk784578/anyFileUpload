@@ -189,7 +189,8 @@ function fileFilter (req, file, cb) {
 
   let storage = requriedNodeModules.multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    let ftp = "//192.168.1.168/ftp1";
+    cb(null, ftp);
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname ) //Appending extension
