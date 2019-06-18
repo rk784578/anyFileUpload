@@ -189,8 +189,8 @@ function fileFilter (req, file, cb) {
 
   let storage = requriedNodeModules.multer.diskStorage({
   destination: function (req, file, cb) {
-    let ftp = "//192.168.1.168/ftp1";
-    cb(null, ftp);
+let ftp = "//192.168.1.168/ftp1";
+cb(null,ftp)
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname ) //Appending extension
@@ -329,7 +329,7 @@ requriedNodeModules.request({
 
 // start server on the specified port and binding host
 // This is for local testing  
-// app.listen(appEnv.port, '0.0.0.0', function () {
+//app.listen(appEnv.port, '0.0.0.0', function () {
   // this is for prod ctrl un comment and push 
 app.listen(80, '0.0.0.0', function() { 
   // print a message when the server starts listening
