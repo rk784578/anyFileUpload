@@ -15,11 +15,12 @@ mainapp.controller('signUpController', ['$scope',
 
 		// on select district 
 		$scope.onSelectDistrict = function () {
-			console.log("district", $scope.district);
+			console.log("district", $scope.districtLi);
 			$scope.ap = false;
 			$scope.ts = false;
 			$scope.other = false;
 			$scope.districtList = false; 
+
 
 			if ($scope.districtLi == "apT") {
 				$scope.ap = true;
@@ -28,9 +29,11 @@ mainapp.controller('signUpController', ['$scope',
 			else if ($scope.districtLi == "tsT") {
 				$scope.ts = true;
 				$scope.districtList = true; 
-			} else {
+			} else if ($scope.districtLi == "otherT" ) {
 				$scope.other = true;
 				$scope.districtList = false; 
+			}else{
+			    console.log("ELSE hited")	
 			}
 		};
 
