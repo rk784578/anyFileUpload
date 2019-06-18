@@ -23,15 +23,18 @@ mainapp.controller('signUpController', ['$scope',
 
 
 			if ($scope.districtLi == "apT") {
-				$scope.ap = true;
 				$scope.districtList = true; 
+				$scope.ap = true;
+				
 			}
 			else if ($scope.districtLi == "tsT") {
-				$scope.ts = true;
 				$scope.districtList = true; 
+				$scope.ts = true;
+				
 			} else if ($scope.districtLi == "otherT" ) {
-				$scope.other = true;
 				$scope.districtList = false; 
+				$scope.other = true;
+				
 			}else{
 			    console.log("ELSE hited")	
 			}
