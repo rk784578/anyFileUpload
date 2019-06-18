@@ -1,6 +1,6 @@
 <div class="registerBack" style="background-image:url('images/img/intro/1.jpg');">
 
-  <div class="form" style="padding: 15px;padding-bottom: 40px">
+  <div class="form" style="padding: 15px;padding-bottom: 75px">
     <div class="haed">
       <h1>Registration Form</h1>
     </div>
@@ -33,10 +33,9 @@
         <div class="field">
           <select ng-model="profile" style="margin-top: 0px;" placeholder="." required>
             <!-- <option value="" style="color: rgba(219,213,213,1.00)!important;">Select Sector</option> -->
-            <option value=""> ----Select Your Profile ----</option>
+            <option value=""> ----Select Your Profile----</option>
             <option value="reporters">Reporters</option>
             <option value="stingers">Stingers</option>
-            <option value="scheduling">Scheduling</option>
             <option value="editors">Editors</option>
             <option value="guests">Guests</option>
             <option value="web">WEB</option>
@@ -51,21 +50,21 @@
         <div class="field">
           <select 
             ng-model="districtLi" style="margin-top: 0px;"  ng:change="onSelectDistrict() " placeholder="." required>
-            <option value=""> ----Select Your District ----</option>
+            <option value=""> ----Select Your State----</option>
             <!-- <option value="" style="color: rgba(219,213,213,1.00)!important;">Select Sector</option> -->
-            <option value="apT">---Andhra Pradesh----</option>
+            <option value="apT">---Andhra Pradesh---</option>
             <option value="tsT">---Telangana---</option>
-            <option value="otherT">----Other---</option>
+            <option value="otherT">---Other---</option>
 
           </select>
           <span class="highlight"></span>
-          <labels for="select1" style="text-align: left;padding-left: 0px;font-weight: 700">District Category</labels>
+          <labels for="select1" style="text-align: left;padding-left: 0px;font-weight: 700">State Category</labels>
         </div>
 
         <div class="field" ng:show= "districtList">
           <select 
             ng-model="district" style="margin-top: 0px;" placeholder="." required>
-            <option value=""> ----Select Your District List ----</option>
+            <option value=""> ----Select Your District----</option>
             <!-- <option value="" style="color: rgba(219,213,213,1.00)!important;">Select Sector</option> -->
            
             <option value="krishna" ng:show="ap">Krishna</option>
@@ -117,12 +116,12 @@
         
           </select>
           <span class="highlight"></span>
-          <labels for="select1" style="text-align: left;padding-left: 0px;font-weight: 700">State Category</labels>
+          <labels for="select1" style="text-align: left;padding-left: 0px;font-weight: 700">District Category</labels>
         </div>
         <div class="field" ng:show="other">
           <input type="text" name="designation" id="designation" ng-model="districtOther" placeholder=""
             ng:change="onchange()" required>
-          <label for="designation">Other State <span style="color:red"></span></label>
+          <label for="designation">Other District <span style="color:red"></span></label>
         </div>
 
         <div class="field">
