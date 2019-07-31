@@ -1,12 +1,12 @@
-var mainapp = angular.module('whiznextcrm', ['ngRoute', 
-                                      
-                                             'xeditable',
-                                             'angularModalService',
-                                             'chart.js',
-                                             'mwl.calendar', 
-                                             'ngAnimate', 
-                                             'ui.bootstrap', 
-                                             'colorpicker.module']);
+var mainapp = angular.module('whiznextcrm', ['ngRoute',
+
+    'xeditable',
+    'angularModalService',
+    'chart.js',
+    'mwl.calendar',
+    'ngAnimate',
+    'ui.bootstrap',
+    'colorpicker.module']);
 
 mainapp.run(['$global', function ($global) {
     $global.setShowlogin(true);
@@ -15,7 +15,7 @@ mainapp.run(['$global', function ($global) {
 }]);
 
 
-mainapp.config(function ($routeProvider,$locationProvider) {
+mainapp.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider
         .when('/login', {
@@ -44,21 +44,21 @@ mainapp.config(function ($routeProvider,$locationProvider) {
             {
                 controller: 'forgotPasswordController',
                 templateUrl: '../forgotPasswordPage.html'
-            })             
-         .when('/reports',
+            })
+        .when('/reports',
             {
                 controller: 'reportController',
                 templateUrl: '../reports.html'
             })
-            .when('/website',
+        .when('/website',
             {
                 //controller: 'reportController',
                 templateUrl: '../site.html'
-            })     
+            })
         .otherwise({
             redirectTo: '/login'
         });
-        $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 });
 
 
@@ -70,7 +70,7 @@ mainapp.factory('$global', function () {
     var numberOfTasks = "";
     var userData = [];
     var googleData = [];
-    let SelectedRecordDataForEdit =[];
+    let SelectedRecordDataForEdit = [];
     let popError = [],
         latestActivityPage = false,
         contactsPage = false,
@@ -82,16 +82,16 @@ mainapp.factory('$global', function () {
         casePage = false,
         adminContactEdit = false,
         welcomePage = false,
-        sms=false,
-        dashbordPage=false,
-        admin=false,
-        campaign=false,
-        companyName=false,
-        recommendation=false,
-        seoPage=false,
-        customApi=false,
+        sms = false,
+        dashbordPage = false,
+        admin = false,
+        campaign = false,
+        companyName = false,
+        recommendation = false,
+        seoPage = false,
+        customApi = false,
         selectionSmsNumber = [],
-        
+
         API_HOST = 'https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/',
         schedule = false,
         planListForEdit = "",
@@ -119,67 +119,67 @@ mainapp.factory('$global', function () {
         setnumberOfTasks: function (val) {
             numberOfTasks = val;
         },
-        serLatestActivityPage:function(val){
+        serLatestActivityPage: function (val) {
             latestActivityPage = val;
         },
-        setContactsPage :function(val){
+        setContactsPage: function (val) {
             contactsPage = val;
         },
-        setTaskPage:function(val){
+        setTaskPage: function (val) {
             taskPage = val;
         },
-        setDealsPage:function(val){
+        setDealsPage: function (val) {
             dealsPage = val;
         },
-        setBulkEmailPage:function(val){
+        setBulkEmailPage: function (val) {
             bulkEmailPage = val;
         },
-        setSearchNotesPage:function(val){
+        setSearchNotesPage: function (val) {
             searchNotesPage = val;
         },
-        setTrashCanPage :function(val){
+        setTrashCanPage: function (val) {
             trashCanPage = val;
         },
-        setCasePage:function(val){
+        setCasePage: function (val) {
             casePage = val;
         },
-        setAdminContactEdit:function(val){
+        setAdminContactEdit: function (val) {
             adminContactEdit = val;
         },
-        setBulkSms:function(val){
-        	sms = val
+        setBulkSms: function (val) {
+            sms = val
         },
-        setSelectionSmsNumber:function(val){
+        setSelectionSmsNumber: function (val) {
             selectionSmsNumber = val;
         },
-        setSelectionName:function(val){
+        setSelectionName: function (val) {
             selectionName = val;
         },
-        setcontactListForEdit:function(val){
+        setcontactListForEdit: function (val) {
             contactListForEdit = val;
         },
-        setcompanyListForEdit:function(val){
+        setcompanyListForEdit: function (val) {
             companyListForEdit = val;
         },
-        setDashbordPage:function(val){
+        setDashbordPage: function (val) {
             dashbordPage = val;
         },
-        setSeoPage:function(val){
+        setSeoPage: function (val) {
             seoPage = val;
         },
-        setAdmin:function(val){
+        setAdmin: function (val) {
             admin = val;
         },
-        setCampaign:function(val){
+        setCampaign: function (val) {
             campaign = val;
         },
-        setRecommendations:function(val){
+        setRecommendations: function (val) {
             recommendation = val;
         },
-        setCustomApi:function(val){
+        setCustomApi: function (val) {
             customApi = val;
         },
-        setApiHost:function(val){
+        setApiHost: function (val) {
             API_HOST = val;
         },
         getLatestActivityPage: function () {
@@ -203,11 +203,11 @@ mainapp.factory('$global', function () {
         getTrashCanPage: function () {
             return trashCanPage;
         },
-        getCasePage:function(){
-           return casePage;
+        getCasePage: function () {
+            return casePage;
         },
-        getAdminContactEdit:function(){
-             return adminContactEdit;
+        getAdminContactEdit: function () {
+            return adminContactEdit;
         },
         getShowlogin: function () {
             return showlogin;
@@ -227,98 +227,98 @@ mainapp.factory('$global', function () {
         getnumberOfTasks: function () {
             return numberOfTasks;
         },
-        getBulkSms:function(){
-        	 return sms;
+        getBulkSms: function () {
+            return sms;
         },
-        setWelcomePage:function (val) {
-              welcomePage = val ;
+        setWelcomePage: function (val) {
+            welcomePage = val;
         },
-        getWelcomePage:function () {
+        getWelcomePage: function () {
             return welcomePage
         },
-        setIndexPostionRecordData:function(val){
+        setIndexPostionRecordData: function (val) {
             SelectedRecordDataForEdit = val
         },
-        getIndexPostionRecordData:function(){
-           return SelectedRecordDataForEdit
+        getIndexPostionRecordData: function () {
+            return SelectedRecordDataForEdit
         },
-        setPopError : function(val) {
-			 val = popError;
-		},
-        getPopError : function () {
-			return popError; 
+        setPopError: function (val) {
+            val = popError;
         },
-        getDashbordPage :function(){
+        getPopError: function () {
+            return popError;
+        },
+        getDashbordPage: function () {
             return dashbordPage;
         },
-        getSelectionSmsNumber:function(){
+        getSelectionSmsNumber: function () {
             return selectionSmsNumber;
         },
-        getSelectionName:function(){
+        getSelectionName: function () {
             return selectionName;
         },
-        getcontactListForEdit:function(){
+        getcontactListForEdit: function () {
             return contactListForEdit;
         },
-        getcompanyListForEdit:function(){
+        getcompanyListForEdit: function () {
             return companyListForEdit;
         },
-        getSeoPage:function(){
+        getSeoPage: function () {
             return seoPage;
         },
-        getAdminPage:function(){
+        getAdminPage: function () {
             return admin;
         },
-        getCampaignPage:function(){
+        getCampaignPage: function () {
             return campaign;
         },
-        getRecommendationsPage:function(){
+        getRecommendationsPage: function () {
             return recommendation;
         },
-        getCustomApiPage:function(){
+        getCustomApiPage: function () {
             return customApi;
         },
-        getApiHost:function(){
-             return API_HOST ;
+        getApiHost: function () {
+            return API_HOST;
         },
-        setSchedule:function(val){
+        setSchedule: function (val) {
             schedule = val;
         },
-        getSchedule:function(){
-             return schedule ;
+        getSchedule: function () {
+            return schedule;
         },
-        setCompanyName:function(val){
+        setCompanyName: function (val) {
             companyName = val;
         },
-        getCompanyName:function(){
-             return companyName ;
+        getCompanyName: function () {
+            return companyName;
         },
-        setTaskListForEdit:function(val){
+        setTaskListForEdit: function (val) {
             taskListForEdit = val;
         },
-        getTaskListForEdit:function(){
-             return taskListForEdit ;
+        getTaskListForEdit: function () {
+            return taskListForEdit;
         },
-        setPlanListForEdit:function(val){
+        setPlanListForEdit: function (val) {
             planListForEdit = val;
         },
-        getPlanListForEdit:function(){
-             return planListForEdit ;
+        getPlanListForEdit: function () {
+            return planListForEdit;
         },
-        setWelcome:function(val){
-           welcome = val;
+        setWelcome: function (val) {
+            welcome = val;
         },
-        getWelcome:function(){
-             return welcome ;
+        getWelcome: function () {
+            return welcome;
         },
-		
+
     };
 });
 
 mainapp.controller('NavController', ['$scope', '$global', '$http', function ($scope, $global, $http) {
     $scope.template = {
         navmenu: 'nav.html',
-        footer:'footer.html'
+        footer: 'footer.html'
     };
 
 
@@ -337,4 +337,19 @@ mainapp.filter('numberToDate', function () {
     }
 });
 
+mainapp.directive('fileModel',
+    ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+                element.bind('change', function () {
+                    scope.$apply(function () {
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
 

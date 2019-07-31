@@ -9,7 +9,8 @@ const request = require('request'),
  bodyParser = require('body-parser'),
  nodemailer = require('nodemailer'),
  crypto = require('crypto'),
- NodeCouchDb = require('node-couchdb');
+ NodeCouchDb = require('node-couchdb'),
+ cmd = require('node-run-cmd');
  //SEOChecker = require('advanced-seo-checker');
 
 
@@ -25,6 +26,8 @@ module.exports ={
     nodemailer:nodemailer,
     crypto:crypto,
     NodeCouchDb:NodeCouchDb,
+    cmd:cmd
+    
 
 
    

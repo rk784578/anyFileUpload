@@ -18,12 +18,16 @@
                                     <div class="haed">
                                         <h1>Advance File Transfer System</h1>
                                     </div>
-                                    <form action="/upload" method="post" enctype="multipart/form-data"
-                                        autocomplete="off">
+                                    <form  method="post" enctype="multipart/form-data"
+                                        autocomplete="off" ng:submit ="sendDataTotheBackend()">
 
                                         <div class="field">
-                                            <input type="file" name="VideoToUpload" id="VideoToUpload" placeholder=" "
-                                                multiple required>
+                                            <!-- <input type="file" name="VideoToUpload" id="VideoToUpload" placeholder=" "
+                                                multiple required> -->
+
+                                                <input type="file" id="file" name="file" multiple
+                                                onchange="angular.element(this).scope().getFileDetails(this)" />
+
                                             <label for="VideoToUpload">Select Files to upload
                                                 <!-- <span style="color:red"></span> -->
                                             </label>
