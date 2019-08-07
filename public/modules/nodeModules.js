@@ -10,7 +10,9 @@ const request = require('request'),
  nodemailer = require('nodemailer'),
  crypto = require('crypto'),
  NodeCouchDb = require('node-couchdb'),
- cmd = require('node-run-cmd');
+ fs = require('fs'),
+ cmd=require('node-cmd');
+
  //SEOChecker = require('advanced-seo-checker');
 
 
@@ -26,11 +28,9 @@ module.exports ={
     nodemailer:nodemailer,
     crypto:crypto,
     NodeCouchDb:NodeCouchDb,
-    cmd:cmd
-    
-
-
-   
+    cmd:cmd,
+    fs:fs
+       
     //SEOChecker:SEOChecker
 
 };

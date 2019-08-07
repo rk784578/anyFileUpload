@@ -26,6 +26,7 @@
 
 
 <div  ng:show="afterData" style="margin-top: 10px" id="printSectionId">
+  <p style="color: white">Note: When the uploadFilesCount is more then 2 it will create a folder with subject name.</p> 
 
   <div class="col-md-12" style="margin-top: 15px;">
     <div class="table-responsive">
@@ -38,6 +39,7 @@
             <td>Subject</td>
             <td>Message</td>
             <td align="center">File Name</td>
+            <td> Upload Files Count</td>
             <td>Name</td>
             <td>Profile</td>
             <td>Designation</td>
@@ -55,6 +57,7 @@
             <td>{{x.subject}}</td>
             <td>{{x.message}}</td>
             <td><div class="popover-wrapper" style="font-size: 12px!important;" ng:repeat="y in x.uploadFile">{{y.filename}},</div></td>
+            <td>{{x.uploadFilesCount}}</td>
             <td>{{x.name}}</td>
             <td>{{x.profile}}</td>
             <td>{{x.designation}}</td>

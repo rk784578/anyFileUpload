@@ -36,18 +36,8 @@ mainapp.controller('forgotPasswordController', ['$scope',
 				$scope.submit = function(){
 					// fetching the client/secret id's for security purpose.
 				/*	clientAndSecret();*/
-				    validation();
-					
-                     if($scope.password !== $scope.rePassword){
-											 
-											 $scope.passwordValidationError ="Password not match. ";
-											 $scope.signupButton = false;
-												$scope.goBackToLogin= false;
-											                	
-               
-							
-						}
-                             
+				   	saveUser();
+								   
 				};
 
 
@@ -59,20 +49,18 @@ mainapp.controller('forgotPasswordController', ['$scope',
 					// other wise will display the  error not valid email id.
 					
 					 if($scope.userName == "" || $scope.userName == undefined){
-						 $scope.userNameError = "Oops! enter your Email ID. "
+						 $scope.userNameError = "Oops! enter your Email ID. ";
 					 }
 					 else{
 						 
+						 console.log( 'validation', $scope.validatingExistingUserOrNot )
 					   if($scope.validatingExistingUserOrNot == true){
 							$scope.existingUserOrNotCheck = " Email Id Matched.";
-							  
 							  if($scope.password === $scope.rePassword){
 									$scope.signupButton = true;
-									saveUser();  
+								  
 								}
-						    
-							 
-							 
+						     
 						    // when the user email id exits in the records will show up the update button 
 				
 						   $scope.goBackToLogin= false;
@@ -130,21 +118,29 @@ mainapp.controller('forgotPasswordController', ['$scope',
 				
 // validating  for user email already exits or not 				
 		function fetchExistingOrNewUser() {
+			 $scope.existingUserOrNotCheck = " Fetching user Data";
+
 			
-
-			$http.post('/getUnactivatedData')
+			$http.post('/getEmployeeDetails',{_id:$scope.userName,value:"forgotPass"})
 				.success(function (data) {
-					//console.log("####",data);
-					//$scope.Data = data;
-					for(var i=0;i<data.length;i++){
-						$scope.Data = data[i];
-						//console.log("^^^",$scope.Data)
-					}
+						/**
+						if the data 0 user is there 
+						if the data -1 user not exits inthe data base.
+						once user  exits  give true or false status.  
+						*/
+						
 
-					// once user  exits  give true or false status  
-					//console.log("data.body.length",data.body.length); 
-					$scope.validatingExistingUserOrNot = data == "" ? false : true;
-					validation();
+                          if(data != 0) {
+                          	$scope.Data = data.rows[0].doc;
+                          	console.log(data.rows[0].doc);
+                          	$scope.validatingExistingUserOrNot = true;
+
+                          }else{
+                          	$scope.validatingExistingUserOrNot = false;
+                          	console.log("not matching");
+                          }
+					
+				        validation();
 					//console.log(" FETCH SUCCESS STATUS", $scope.validatingExistingUserOrNot);
 					//$location.path('/login');
 					//console.log("log 3",$scope.company);

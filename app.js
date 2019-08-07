@@ -51,8 +51,33 @@ app.get('/*', function (req, res) {
 
 app.post('/getEmployeeDetails', (req, res) => {
   var db = "uploadanyregisterandlogin";
-  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-    db + '/' + "_design/uploadAny/_search/fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
+  var URL ="https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
+    db + '/' + "_design/uploadAny/_search/";
+
+/**
+----------------------------------------------------
+   Switch the url here to fetch the data from 
+----------------------------------------------------
+ -- From one if login fetch from user ID 
+ -- IF its from reset change userID to email Id fetch the data
+
+*/
+
+ if(req.body.value == "forgotPass") {
+  console.log(">> IF << ");
+
+  URL = URL +  "fetchForResetData?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
+ 
+
+ }else{
+ console.log(">>  Else << ")
+  URL = URL +  "fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
+ 
+
+ }
+
+
+
   //console.log(URL);    
   requriedNodeModules.request({
     uri: URL,
@@ -151,7 +176,7 @@ app.post('/updateLoginUser', (req, res) => {
   var db = "uploadanyregisterandlogin";
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
     db + '/' + req.body._id;
-  //console.log(URL);        
+  console.log(URL , req.body);        
 
 
   requriedNodeModules.request({
@@ -216,27 +241,25 @@ let storage = requriedNodeModules.multer.diskStorage({
     if (Number(req.body.filesCount) > 1) {
 
       let  create_folder_path = 'mkdir ' + requriedNodeModules.path.join(__dirname + user_defined_path_to_store + '/'+req.body.title);
-      console.log(">> path to create the  folder << " ,create_folder_path );
-      requriedNodeModules.cmd.run( create_folder_path).then(function (exitCodes) {
+     // console.log(">> path to create the  folder << " ,create_folder_path );
+     // requriedNodeModules.cmd.run(create_folder_path)
 
-
-        //  pass the proper path 
+      requriedNodeModules.cmd.get(create_folder_path,
+        (err, data, stderr)=>{
+           //  pass the proper path 
         let proper_path = user_defined_path_to_store + '/' + req.body.title;
-        console.log(">> proper path << ", proper_path);
+       // console.log(">> proper path << ", proper_path);
 
         // integrate to the path and store
         ftp_path_to_store = requriedNodeModules.path.join(__dirname + proper_path);
-        console.log(" folder created");
+        console.log(" folder created" ,proper_path);
 
         // store the path  
         cb(null, ftp_path_to_store);
-
-
-      },
-        function (err) {
-          console.log('Command failed to run with error: ', err);
-        });
-
+          
+        }
+    );
+              
     } else {
 
 
@@ -258,10 +281,12 @@ var upload = requriedNodeModules.multer({ storage: storage, fileFilter: fileFilt
 app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
 
 
-  //console.log('File here', req.files);
+  console.log('at the time storing',req.body.message);
   //console.log("Upload", upload.array('VideoToUpload'));
   //console.log("upload Data", {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body, timestamp:dateAndTime(new Date()) 
   //})
+
+
 
   var db = "uploadanyregisterandlogin";
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
@@ -273,8 +298,9 @@ app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
     json: {
       uploadFile: req.files, date: convertDateToInteger(new Date()),
       type: "upload",
+      uploadFilesCount:req.body.filesCount,
       message: req.body.message,
-      subject: req.body.subject,
+      subject: req.body.title,
       district: req.body.district,
       name: req.body.name,
       mobileNumber: req.body.mobileNumber,
@@ -289,22 +315,26 @@ app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
 
     if (err) {
 
+console.log('error ...... ' ,err);
     } else {
-      console.log(response.statusCode, response.statusMessage)
-
-
+        if (req.files) {
+    console.log(" >>>>>Inside if  Successfully received <<<<<<");
+    res.send({ success: "success" }); 
+    // res.end();  
+  }
+     
+     console.log( "req.body.filesCount >>>>>>>>>>>>>> ",req.body.filesCount);
+     // res.send(response.statusMessage)
+     // res.end();
     }
   })
 
 
-  //res.end();           
+          
 
   //console.log(req.params);
   //res.send("uploading your file.");
-  if (req.files) {
-    console.log("successfully received");
-    res.send({ success: "success" });
-  }
+
   //return res.end();
 });
 
