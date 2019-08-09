@@ -232,15 +232,17 @@ let storage = requriedNodeModules.multer.diskStorage({
     let ftp_path_to_store;
 
     // stage ENV 
-    let user_defined_path_to_store = '/upload';
+    let user_defined_path_to_store = 'upload';
+       //  change the path directory here. 
+    let path_directory = "C:/";
 
     // production ENV 
     //let user_defined_path_to_store = "//192.168.1.168/ftp1";
 
 
-    if (Number(req.body.filesCount) > 1) {
+    if (Number(req.body.filesCount) > 2) {
 
-      let  create_folder_path = 'mkdir ' + requriedNodeModules.path.join(__dirname + user_defined_path_to_store + '/'+req.body.title);
+      let  create_folder_path = 'mkdir ' + requriedNodeModules.path.join(path_directory + user_defined_path_to_store + '/'+req.body.title);
      // console.log(">> path to create the  folder << " ,create_folder_path );
      // requriedNodeModules.cmd.run(create_folder_path)
 
@@ -251,7 +253,7 @@ let storage = requriedNodeModules.multer.diskStorage({
        // console.log(">> proper path << ", proper_path);
 
         // integrate to the path and store
-        ftp_path_to_store = requriedNodeModules.path.join(__dirname + proper_path);
+        ftp_path_to_store = requriedNodeModules.path.join(path_directory + proper_path);
         console.log(" folder created" ,proper_path);
 
         // store the path  
@@ -263,8 +265,8 @@ let storage = requriedNodeModules.multer.diskStorage({
     } else {
 
 
-      ftp_path_to_store = requriedNodeModules.path.join(__dirname + user_defined_path_to_store);
-      console.log(">> stored files with out createing the folder. <<");
+      ftp_path_to_store = requriedNodeModules.path.join(path_directory + user_defined_path_to_store);
+      console.log(">> stored files with out createing the folder. <<", ftp_path_to_store);
       cb(null, ftp_path_to_store);
 
     }
