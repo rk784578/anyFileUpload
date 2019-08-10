@@ -1,9 +1,6 @@
 // requried modules 
 let requriedNodeModules = require('./public/modules/nodeModules.js');
 
-
-
-
 // create a new express server
 var app = requriedNodeModules.express();
 
@@ -26,7 +23,7 @@ var appEnv = requriedNodeModules.cfenv.getAppEnv();
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested With, Content-Type, Accept');
   next();
 });
@@ -36,45 +33,80 @@ app.get('/', function (req, res) {
   res.sendfile('index.html');
 });
 
+/**
+ * URL / DB name 
+ */
 
+var db = "uploadanyregisterandlogin";
+var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
+  db + '/aftsLicenceVijayawada/' ;
 
-
-// this for removing the path # in the route ....
+/**
+ * This for removing the path # in the route ....
+ * Check the the licence is  enabled or not for the application 
+ * That licence will be the  mapped to the server
+ * Licence validation Too. 
+ * Think for future  .pem file 
+ * For read from env Varibale  matp to the data base that file   
+ * --------------------------------------------------------------------------------
+ * Licence Expire date send like notification to the browser  before 10 days.
+ * ----------------------------------------------------------------------------------
+ */
 app.get('/*', function (req, res) {
-  res.sendFile(requriedNodeModules.path.join(__dirname + '/public/index.html'));
+
+  requriedNodeModules.request({
+    uri: URL,
+    method: "GET"
+  }, (err, response, body) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      let parse_Body = JSON.parse(body);
+      if(parse_Body.validateUpTo == convertDateToInteger(new Date())){
+        res.send("Licence validalidation Expired.  ==> " + parse_Body.validateUpTo);
+       }
+      else if (process.env.PEM == parse_Body.licenceKey) {
+        res.sendFile(requriedNodeModules.path.join(__dirname + '/public/index.html'));
+      } else {
+        //res.send("Licence key is Need to access this application. ");
+        res.sendFile(requriedNodeModules.path.join(__dirname + '/public/exceptionHandle.html'));
+      }
+    }
+  })
 });
 
-
+``
 
 
 //Fetch based on Employee email
 
 app.post('/getEmployeeDetails', (req, res) => {
   var db = "uploadanyregisterandlogin";
-  var URL ="https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
+  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
     db + '/' + "_design/uploadAny/_search/";
 
-/**
-----------------------------------------------------
-   Switch the url here to fetch the data from 
-----------------------------------------------------
- -- From one if login fetch from user ID 
- -- IF its from reset change userID to email Id fetch the data
+  /**
+  ----------------------------------------------------
+     Switch the url here to fetch the data from 
+  ----------------------------------------------------
+   -- From one if login fetch from user ID 
+   -- IF its from reset change userID to email Id fetch the data
+  
+  */
 
-*/
+  if (req.body.value == "forgotPass") {
+    console.log(">> IF << ");
 
- if(req.body.value == "forgotPass") {
-  console.log(">> IF << ");
+    URL = URL + "fetchForResetData?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
 
-  URL = URL +  "fetchForResetData?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
- 
 
- }else{
- console.log(">>  Else << ")
-  URL = URL +  "fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
- 
+  } else {
+    console.log(">>  Else << ")
+    URL = URL + "fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
 
- }
+
+  }
 
 
 
@@ -176,7 +208,7 @@ app.post('/updateLoginUser', (req, res) => {
   var db = "uploadanyregisterandlogin";
   var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
     db + '/' + req.body._id;
-  console.log(URL , req.body);        
+  console.log(URL, req.body);
 
 
   requriedNodeModules.request({
@@ -233,7 +265,7 @@ let storage = requriedNodeModules.multer.diskStorage({
 
     // stage ENV 
     let user_defined_path_to_store = 'upload';
-       //  change the path directory here. 
+    //  change the path directory here. 
     let path_directory = "C:/";
 
     // production ENV 
@@ -242,26 +274,26 @@ let storage = requriedNodeModules.multer.diskStorage({
 
     if (Number(req.body.filesCount) > 2) {
 
-      let  create_folder_path = 'mkdir ' + requriedNodeModules.path.join(path_directory + user_defined_path_to_store + '/'+req.body.title);
-     // console.log(">> path to create the  folder << " ,create_folder_path );
-     // requriedNodeModules.cmd.run(create_folder_path)
+      let create_folder_path = 'mkdir ' + requriedNodeModules.path.join(path_directory + user_defined_path_to_store + '/' + req.body.title);
+      // console.log(">> path to create the  folder << " ,create_folder_path );
+      // requriedNodeModules.cmd.run(create_folder_path)
 
       requriedNodeModules.cmd.get(create_folder_path,
-        (err, data, stderr)=>{
-           //  pass the proper path 
-        let proper_path = user_defined_path_to_store + '/' + req.body.title;
-       // console.log(">> proper path << ", proper_path);
+        (err, data, stderr) => {
+          //  pass the proper path 
+          let proper_path = user_defined_path_to_store + '/' + req.body.title;
+          // console.log(">> proper path << ", proper_path);
 
-        // integrate to the path and store
-        ftp_path_to_store = requriedNodeModules.path.join(path_directory + proper_path);
-        console.log(" folder created" ,proper_path);
+          // integrate to the path and store
+          ftp_path_to_store = requriedNodeModules.path.join(path_directory + proper_path);
+          console.log(" folder created", proper_path);
 
-        // store the path  
-        cb(null, ftp_path_to_store);
-          
+          // store the path  
+          cb(null, ftp_path_to_store);
+
         }
-    );
-              
+      );
+
     } else {
 
 
@@ -283,7 +315,7 @@ var upload = requriedNodeModules.multer({ storage: storage, fileFilter: fileFilt
 app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
 
 
-  console.log('at the time storing',req.body.message);
+  console.log('at the time storing', req.body.message);
   //console.log("Upload", upload.array('VideoToUpload'));
   //console.log("upload Data", {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body, timestamp:dateAndTime(new Date()) 
   //})
@@ -300,7 +332,7 @@ app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
     json: {
       uploadFile: req.files, date: convertDateToInteger(new Date()),
       type: "upload",
-      uploadFilesCount:req.body.filesCount,
+      uploadFilesCount: req.body.filesCount,
       message: req.body.message,
       subject: req.body.title,
       district: req.body.district,
@@ -317,22 +349,22 @@ app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
 
     if (err) {
 
-console.log('error ...... ' ,err);
+      console.log('error ...... ', err);
     } else {
-        if (req.files) {
-    console.log(" >>>>>Inside if  Successfully received <<<<<<");
-    res.send({ success: "success" }); 
-    // res.end();  
-  }
-     
-     console.log( "req.body.filesCount >>>>>>>>>>>>>> ",req.body.filesCount);
-     // res.send(response.statusMessage)
-     // res.end();
+      if (req.files) {
+        console.log(" >>>>>Inside if  Successfully received <<<<<<");
+        res.send({ success: "success" });
+        // res.end();  
+      }
+
+      console.log("req.body.filesCount >>>>>>>>>>>>>> ", req.body.filesCount);
+      // res.send(response.statusMessage)
+      // res.end();
     }
   })
 
 
-          
+
 
   //console.log(req.params);
   //res.send("uploading your file.");
@@ -418,11 +450,19 @@ app.post('/getUploadData', (req, res) => {
   //res.end();           
 });
 
+
+
+
+
 // start server on the specified port and binding host
 // This is for local testing  
 //app.listen(appEnv.port, '0.0.0.0', function () {
 // this is for prod ctrl un comment and push 
 app.listen(80, '0.0.0.0', function () {
   // print a message when the server starts listening
+
   console.log("server starting on " + appEnv.url);
 });
+
+
+

@@ -17,6 +17,8 @@ mainapp.controller('loginController', ['$scope',
 	) {
 
 
+
+
 		//forgotPassword()
 		$scope.forgotPassword = function () {
 			$location.path('/forgotPasswordPage');
