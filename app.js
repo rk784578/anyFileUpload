@@ -37,9 +37,10 @@ app.get('/', function (req, res) {
  * URL / DB name 
  */
 
+const config = require('./backend/config.js')
 var db = "uploadanyregisterandlogin";
 var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-  db + '/aftsLicenceVijayawada/' ;
+  db + '/aftsLicenceVijayawada/';
 
 /**
  * This for removing the path # in the route ....
@@ -51,10 +52,13 @@ var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df56
  * --------------------------------------------------------------------------------
  * Licence Expire date send like notification to the browser  before 10 days.
  * ----------------------------------------------------------------------------------
+ * Check one  == licence key  cloud / ENV 
+ * 
  */
+
 app.get('/*', function (req, res) {
 
-  requriedNodeModules.request({
+requriedNodeModules.request({
     uri: URL,
     method: "GET"
   }, (err, response, body) => {
@@ -63,20 +67,22 @@ app.get('/*', function (req, res) {
     }
     else {
       let parse_Body = JSON.parse(body);
-      if(parse_Body.validateUpTo == convertDateToInteger(new Date())){
+      if (parse_Body.validateUpTo == convertDateToInteger(new Date())) {
         res.send("Licence validalidation Expired.  ==> " + parse_Body.validateUpTo);
-       }
+      }
       else if (process.env.PEM == parse_Body.licenceKey) {
         res.sendFile(requriedNodeModules.path.join(__dirname + '/public/index.html'));
       } else {
         //res.send("Licence key is Need to access this application. ");
         res.sendFile(requriedNodeModules.path.join(__dirname + '/public/exceptionHandle.html'));
-      }
+      
+     }
+     
+
     }
   })
 });
 
-``
 
 
 //Fetch based on Employee email
@@ -115,8 +121,6 @@ app.post('/getEmployeeDetails', (req, res) => {
     uri: URL,
     method: "GET"
   }, (err, response, body) => {
-
-
     if (err) {
       // res.send(err);
     } else {
@@ -271,17 +275,20 @@ let storage = requriedNodeModules.multer.diskStorage({
     // production ENV 
     //let user_defined_path_to_store = "//192.168.1.168/ftp1";
 
+    // Title ( remove the sapces if the user enter the data with sapce remove those and give  single line code ).
+    const title = req.body.title.replace(/\s+/g, "");
 
+      //console.log(">> TITLE <<" , title);
     if (Number(req.body.filesCount) > 2) {
 
-      let create_folder_path = 'mkdir ' + requriedNodeModules.path.join(path_directory + user_defined_path_to_store + '/' + req.body.title);
+      let create_folder_path = 'mkdir ' + requriedNodeModules.path.join(path_directory + user_defined_path_to_store + '/' + title);
       // console.log(">> path to create the  folder << " ,create_folder_path );
       // requriedNodeModules.cmd.run(create_folder_path)
 
       requriedNodeModules.cmd.get(create_folder_path,
         (err, data, stderr) => {
           //  pass the proper path 
-          let proper_path = user_defined_path_to_store + '/' + req.body.title;
+          let proper_path = user_defined_path_to_store + '/' + title;
           // console.log(">> proper path << ", proper_path);
 
           // integrate to the path and store
