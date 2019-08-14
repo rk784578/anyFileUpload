@@ -39,30 +39,22 @@ mainapp.controller('loginController', ['$scope',
 		$scope.superAdminLoginName = [];
 		$scope.login = function () {
 			if ($scope.userName == "superadmin" && $scope.password == "$admin247") {
-
 				$global.setAdminlogged(true);
-
 				$location.path('/signUpVerification'); // admin home page path
 				//console.log(' ADMIN HOMEPAGE');
-
 			}
 			else if ($scope.userName == "viewadmin" && $scope.password == "515admin") {
-
 				$global.setAdminlogged(true);
-
 				$location.path('/reports');
 			}
 			else {
-				console.log("else");
 				$scope.loader = true;
 				$global.setAdminlogged(true);
-			   getloginData();
-
+			            getloginData();
 			}
 		};
 
 		$scope.loginData = [];
-
 		function getloginData() {
 			$scope.userValidationError = "";
 			$scope.loginData = [];
@@ -71,19 +63,17 @@ mainapp.controller('loginController', ['$scope',
 
 			$http.post('/getEmployeeDetails', { _id: $scope.userName })
 				.success(function (data, status) {
-					console.log(data);
-					if(data == 0){
+					//console.log(data);
+					if(data == "0"){
 						$scope.whiznextLoader = false;
 						$scope.loader = false;
-					
 						$scope.userValidationError = "Invalid username or password.";
 						
 					}else{
 					
-					$scope.loginData.push(data.rows[0].doc);
-					console.log("DATA", $scope.loginData);
+					$scope.loginData.push(data);
+					//console.log("DATA", $scope.loginData);
 					/*user validation*/
-
 					if ($scope.loginData[0] === undefined) {
 						// console.log("else if hited");
 						$scope.userValidationError = "Your Not a Existing User.";
@@ -161,10 +151,5 @@ mainapp.controller('loginController', ['$scope',
 					$scope.loader = false;
 
 				});
-
 		};
-	
-	
-
-
 	}]);

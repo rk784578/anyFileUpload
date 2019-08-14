@@ -8,23 +8,21 @@ var app = requriedNodeModules.express();
 app.use(requriedNodeModules.express.static(__dirname + '/public'));
 app.use(requriedNodeModules.bodyParser.urlencoded({
   extended: true
-
-
 }));
 
 //our Angular code is sending JSON data, but your Express app is parsing it as URL encoded data.
-app.use(requriedNodeModules.bodyParser.json({
-
-}));
+app.use(requriedNodeModules.bodyParser.json({}));
 
 // get the app environment from Cloud Foundry
 var appEnv = requriedNodeModules.cfenv.getAppEnv();
 
-
+// cross platform form 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested With, Content-Type, Accept');
+  // Middle ware call stack 
+  // This will excuit next  ready event in the stack
   next();
 });
 
@@ -33,14 +31,26 @@ app.get('/', function (req, res) {
   res.sendfile('index.html');
 });
 
+
+// Get utilites 
+const utilities = require('./backend/utilities.js');
+// rest calls 
+const restCalls = require('./backend/restCalls.js');
+
 /**
- * URL / DB name 
+ * Change all the cloudant DB to the  Local mongo DB 
+ * With proper security logins creds
+ * Use helmat
+ * Get API from ENV  
+ * 
  */
 
-const config = require('./backend/config.js')
-var db = "uploadanyregisterandlogin";
-var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-  db + '/aftsLicenceVijayawada/';
+// Fetch Config Data
+const config = require('./backend/config.js');
+
+// URL + DB 
+const DB = config.CLOUDANT_DATA_BASE;
+let URL = config.CLOUDANT_URL + DB;
 
 /**
  * This for removing the path # in the route ....
@@ -57,18 +67,13 @@ var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df56
  */
 
 app.get('/*', function (req, res) {
-
-  requriedNodeModules.request({
-    uri: URL,
-    method: "GET"
-  }, (err, response, body) => {
+  restCalls.cloudRest(URL + '/aftsLicenceVijayawada/', "GET", " ", (err, result) => {
     if (err) {
       console.log(err);
-    }
-    else {
-      let parse_Body = JSON.parse(body);
+    } else {
+      let parse_Body = result;
       let handle_Data;
-      if (parse_Body.validateUpTo == convertDateToInteger(new Date())) {
+      if (parse_Body.validateUpTo == utilities.convertDateToInteger(new Date())) {
         res.send("Licence validalidation Expired.  ==> " + parse_Body.validateUpTo);
       }
       else if (process.env.PEM == parse_Body.licenceKey) {
@@ -77,164 +82,99 @@ app.get('/*', function (req, res) {
       } else {
         //res.send("Licence key is Need to access this application. ");
         res.sendFile(requriedNodeModules.path.join(__dirname + '/public/exceptionHandle.html'));
-        handle_Data = "0"; 
+        handle_Data = "0";
       }
-      app.post('/dontKnow',(req,res)=>{
+      // send status
+      app.post('/dontKnow', (req, res) => {
         res.send(handle_Data)
       })
-
-
     }
   })
 });
 
-
-
-//Fetch based on Employee email
-
-app.post('/getEmployeeDetails', (req, res) => {
-  var db = "uploadanyregisterandlogin";
-  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-    db + '/' + "_design/uploadAny/_search/";
-
-  /**
-  ----------------------------------------------------
-     Switch the url here to fetch the data from 
-  ----------------------------------------------------
-   -- From one if login fetch from user ID 
-   -- IF its from reset change userID to email Id fetch the data
-  
-  */
-
-  if (req.body.value == "forgotPass") {
-    console.log(">> IF << ");
-
-    URL = URL + "fetchForResetData?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
-
-
-  } else {
-    console.log(">>  Else << ")
-    URL = URL + "fetchBasedOnEmployeeEmail?" + 'query=employeeEmail:\"' + req.body._id + '\"' + '&include_docs=true';
-
-
-  }
-
-
-
-  //console.log(URL);    
-  requriedNodeModules.request({
-    uri: URL,
-    method: "GET"
-  }, (err, response, body) => {
-    if (err) {
-      // res.send(err);
-    } else {
-      let parseData = JSON.parse(body);
-      //console.log(body);
-      //console.log("####",parseData.total_rows);
-      if (parseData.total_rows == 0) {
-        res.send('0');
-        console.log('if');
-      }
-      else {
-        console.log('else');
-        res.send(JSON.parse(body));
-      }
-
-    }
-  })
-
-
-
-});
-
-
-
-//Fetch based on Employee email
+/**
+ * 1.Sotre registered user Data 
+ * 2.Fetch the login data based on the username / email id ( reset password)
+ * 3.Super Admin Login 
+ * 4.Update data in the database
+ * 5.Upload Images / Store
+ * 6.Report Data
+ */
 
 app.post('/storeReg', (req, res) => {
-  var db = "uploadanyregisterandlogin";
-  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-    db + '/';
-  requriedNodeModules.request({
-    uri: URL,
-    method: "POST",
-    json: req.body
-  }, (err, response, body) => {
-
-
+  restCalls.insert(config.LOCAL_HOST, config.LOCAL_DATA_BASE, config.LOCAL_DATA_BASE_COLLECTION, req.body, (err, result) => {
     if (err) {
       res.send(err);
     } else {
-      console.log(response.statusCode, response.statusMessage)
       res.status(200).send('Created');
-
     }
   })
+  // res.end();
+});
+//Fetch based on Employee email
+app.post('/getEmployeeDetails', (req, res) => {
+  /**
+ ----------------------------------------------------
+    Switch the url here to fetch the data from 
+ ----------------------------------------------------
+  -- From one if login fetch from user ID 
+  -- IF its from reset change userID to email Id fetch the data
+ 
+ */
 
+  let JSON_DATA = {};
+  (req.body.value == "forgotPass") ? JSON_DATA['email'] = req.body._id : JSON_DATA['_id'] = req.body._id;
 
-  //res.end();           
+  restCalls.findOne(config.LOCAL_HOST, config.LOCAL_DATA_BASE, config.LOCAL_DATA_BASE_COLLECTION, JSON_DATA, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      if (result !== null) {
+        if (result.contact == "login") {
+          res.send(result);
+        }
+      } else {
+        res.send("0");
+      }
+    }
+  })
 });
 
+// Super admin data get all records from data base 
 app.post('/getUnactivatedData', (req, res) => {
-  var db = "uploadanyregisterandlogin";
-  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-    db + '/_all_docs?include_docs=true';
-  requriedNodeModules.request({
-    uri: URL,
-    method: "GET"
-  }, (err, response, body) => {
-    //console.log(body);
-    var rows = [];
-    if (err) {
 
-    }
-
-    var rowsObject = JSON.parse(body);
-    //console.log('Big ASS',rowsObject,response.statusCode);
-    if (response.statusCode !== 404) {
-      for (var i = 0; i < rowsObject.rows.length; i++) {
-        if (!(rowsObject.rows[i].doc._id.includes("_design"))) {
-
-          rows.push(rowsObject.rows[i].doc);
-        }
-
+  restCalls.getAll(config.LOCAL_HOST,
+    config.LOCAL_DATA_BASE,
+    config.LOCAL_DATA_BASE_COLLECTION,
+    '',
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        //console.log('TOTAL_Results', result);
+        res.send(result);
       }
-
-    }
-
-    //console.log(rows);
-    res.send(rows);
-
-  })
-
-
+    })
   //res.end();           
 });
 
 // update the loagin user from super admin/1
 app.post('/updateLoginUser', (req, res) => {
-  var db = "uploadanyregisterandlogin";
-  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-    db + '/' + req.body._id;
-  console.log(URL, req.body);
 
+  // console.log(req.body);
+  restCalls.updateData(config.LOCAL_HOST,
+    config.LOCAL_DATA_BASE,
+    config.LOCAL_DATA_BASE_COLLECTION,
+    req.body,
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        console.log("update", result);
+        res.status(201).send('Updated');
+      }
 
-  requriedNodeModules.request({
-    uri: URL,
-    method: "PUT",
-    json: req.body
-  }, (err, response, body) => {
-
-
-    if (err) {
-      res.send(err);
-    } else {
-      console.log(response.statusCode, response.statusMessage)
-      res.status(201).send('Updated');
-
-    }
-  })
+    });
 });
 
 //File Upload
@@ -326,145 +266,70 @@ var upload = requriedNodeModules.multer({ storage: storage, fileFilter: fileFilt
 
 app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
 
-
-  console.log('at the time storing', req.body.message);
-  //console.log("Upload", upload.array('VideoToUpload'));
-  //console.log("upload Data", {uploadFile:req.file, date: convertDateToInteger(new Date()), type: "upload",message:req.body.message, subject:req.body.subject, district:req.body, timestamp:dateAndTime(new Date()) 
-  //})
-
-
-
-  var db = "uploadanyregisterandlogin";
-  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-    db + '/';
-
-  requriedNodeModules.request({
-    uri: URL,
-    method: "POST",
-    json: {
-      uploadFile: req.files, date: convertDateToInteger(new Date()),
-      type: "upload",
-      uploadFilesCount: req.body.filesCount,
-      message: req.body.message,
-      subject: req.body.title,
-      district: req.body.district,
-      name: req.body.name,
-      mobileNumber: req.body.mobileNumber,
-      profile: req.body.profile,
-      designation: req.body.designation,
-      empID: req.body.empID,
-      email: req.body.email,
-      timestamp: dateAndTime(new Date())
-    }
-  }, (err, response, body) => {
+  let data = {
+    uploadFile: req.files, date: utilities.convertDateToInteger(new Date()),
+    type: "upload",
+    uploadFilesCount: req.body.filesCount,
+    message: req.body.message,
+    subject: req.body.title,
+    district: req.body.district,
+    name: req.body.name,
+    mobileNumber: req.body.mobileNumber,
+    profile: req.body.profile,
+    designation: req.body.designation,
+    empID: req.body.empID,
+    email: req.body.email,
+    timestamp: utilities.dateAndTime(new Date())
+  };
 
 
-    if (err) {
 
-      console.log('error ...... ', err);
-    } else {
-      if (req.files) {
-        console.log(" >>>>>Inside if  Successfully received <<<<<<");
-        res.send({ success: "success" });
-        // res.end();  
+  restCalls.insert(config.LOCAL_HOST,
+    config.LOCAL_DATA_BASE,
+    config.LOCAL_DATA_BASE_COLLECTION,
+    data, (err, result) => {
+
+      if (err) {
+        console.log('error ...... ', err);
+      } else {
+        if (req.files) {
+          console.log(" >>>>>Inside if  Successfully received <<<<<<");
+          res.send({ success: "success" });
+          // res.end();  
+        }
+        console.log("req.body.filesCount >>>>>>>>>>>>>> ", req.body.filesCount);
       }
-
-      console.log("req.body.filesCount >>>>>>>>>>>>>> ", req.body.filesCount);
-      // res.send(response.statusMessage)
-      // res.end();
-    }
-  })
-
-
-
-
-  //console.log(req.params);
-  //res.send("uploading your file.");
-
-  //return res.end();
+    })
 });
 
-
-var dateAndTime = function () {
-  let dt = new Date();
-  var h = dt.getHours(), m = dt.getMinutes();
-  var _time = (h > 12) ? (h - 12 + ':' + m + ' PM') : (h + ':' + m + ' AM');
-
-  //console.log(dateAndTime);
-
-  return _time;
-  //convertTime12to24(_time);
-}
-
-const convertTime12to24 = (time12h) => {
-  const [time, modifier] = time12h.split(' ');
-
-  let [hours, minutes] = time.split(':');
-
-  if (hours === '12') {
-    hours = '00';
-  }
-
-  if (modifier === 'PM') {
-    hours = parseInt(hours, 10) + 12;
-  }
-
-  return `${hours}:${minutes}`;
-}
-
-
-
-
-function convertDateToInteger(data) {
-  if (data == undefined || data == null || data == "") {
-    return Number();
-
-  } else {
-
-
-    var dateToConvert = new Date(data);
-    // month should return with a leading zero incase of single digit number
-    var month = (dateToConvert.getMonth() + 1) <= 9 ? '0' + (dateToConvert.getMonth() + 1) : (dateToConvert.getMonth() + 1);
-    var day = dateToConvert.getDate() <= 9 ? '0' + dateToConvert.getDate() : dateToConvert.getDate();
-    var formattedDate = dateToConvert.getFullYear().toString() + month + day;
-    return Number(formattedDate); //This will convert the date string into number, in order to store in database
-  }
-};
-
-//url = url + '&query=dateRange:[' + startDate + ' TO ' + endDate + ']' 
 
 // report Data 
 app.post('/getUploadData', (req, res) => {
-  var db = "uploadanyregisterandlogin/";
-  var date = convertDateToInteger(req.body.date);
-  console.log(date);
-  var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/" +
-    //'_design/logisticsDesign/_search/logisticsRecordsByType?query=logisticsType:\"Import\"&include_docs=true'            
-    db + '_design/uploadAny/_search/fetchBasedOnDate?query=date:[' + date + ' TO ' + date + ']' + '&include_docs=true';
-  console.log(URL);
-  requriedNodeModules.request({
-    uri: URL,
-    method: "GET"
-  }, (err, response, body) => {
-    //console.log(body);
 
-    if (err) {
-      res.send(err);
-    }
+  var Date_For_Match = utilities.convertDateToInteger(req.body.date);
 
-    var rowsObject = JSON.parse(body);
-    //console.log(rowsObject);
-    res.send(rowsObject);
+  restCalls.getAll(config.LOCAL_HOST,
+    config.LOCAL_DATA_BASE,
+    config.LOCAL_DATA_BASE_COLLECTION,
+    '',
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
 
-  })
+        let data = [];
+        for( let i=0;i<result.length;i++){
+          if(result[i].type == "upload"){
+            data.push(result[i]);  
+          }   
+        }
+        //console.log('TOTAL_Results', result);
+        res.send(data);
+      }
+    })
 
-
-  //res.end();           
+ 
 });
-
-
-
-
 
 // start server on the specified port and binding host
 // This is for local testing  
@@ -475,6 +340,18 @@ app.listen(80, '0.0.0.0', function () {
 
   console.log("server starting on " + appEnv.url);
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
