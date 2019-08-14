@@ -2,11 +2,9 @@ var mainapp = angular.module('whiznextcrm', ['ngRoute',
                                       
                                              'xeditable',
                                              'angularModalService',
-                                             'chart.js',
-                                             'mwl.calendar', 
-                                             'ngAnimate', 
-                                             'ui.bootstrap', 
-                                             'colorpicker.module']);
+                                             'chart.js'
+                                            
+                                             ]);
 
 mainapp.run(['$global', function ($global) {
     $global.setShowlogin(true);
@@ -16,6 +14,9 @@ mainapp.run(['$global', function ($global) {
 
 
 mainapp.config(function ($routeProvider,$locationProvider) {
+
+   
+
 
     $routeProvider
         .when('/login', {
@@ -59,6 +60,11 @@ mainapp.config(function ($routeProvider,$locationProvider) {
             {
                 //controller: 'reportController',
                 templateUrl: '../site.html'
+            })   
+            .when('/licenceCheck',
+            {
+                //controller: 'reportController',
+                templateUrl: '../exceptionHandle.html'
             })     
         .otherwise({
             redirectTo: '/login'
@@ -96,7 +102,6 @@ mainapp.factory('$global', function () {
         seoPage=false,
         customApi=false,
         selectionSmsNumber = [],
-        
         API_HOST = 'https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df5688329b77cc2140cb83e00c312f7be03daed61b0a93ef6e11@0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix.cloudant.com/',
         schedule = false,
         planListForEdit = "",

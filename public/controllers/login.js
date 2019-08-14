@@ -18,6 +18,10 @@ mainapp.controller('loginController', ['$scope',
 
 
 
+		$http.post('/dontKnow').success((res)=>{
+			console.log( "from api ",res);
+			res == "0" ? $location.path('/licenceCheck') :$location.path('/login'); 
+   })
 
 		//forgotPassword()
 		$scope.forgotPassword = function () {

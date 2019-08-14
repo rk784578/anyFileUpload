@@ -58,7 +58,7 @@ var URL = "https://0df2fcdc-86c0-43d3-baee-f9d5302ad598-bluemix:ca3a681531d5df56
 
 app.get('/*', function (req, res) {
 
-requriedNodeModules.request({
+  requriedNodeModules.request({
     uri: URL,
     method: "GET"
   }, (err, response, body) => {
@@ -67,17 +67,22 @@ requriedNodeModules.request({
     }
     else {
       let parse_Body = JSON.parse(body);
+      let handle_Data;
       if (parse_Body.validateUpTo == convertDateToInteger(new Date())) {
         res.send("Licence validalidation Expired.  ==> " + parse_Body.validateUpTo);
       }
       else if (process.env.PEM == parse_Body.licenceKey) {
         res.sendFile(requriedNodeModules.path.join(__dirname + '/public/index.html'));
+        handle_Data = "1";
       } else {
         //res.send("Licence key is Need to access this application. ");
         res.sendFile(requriedNodeModules.path.join(__dirname + '/public/exceptionHandle.html'));
-      
-     }
-     
+        handle_Data = "0"; 
+      }
+      app.post('/dontKnow',(req,res)=>{
+        res.send(handle_Data)
+      })
+
 
     }
   })
@@ -278,7 +283,7 @@ let storage = requriedNodeModules.multer.diskStorage({
     // Title ( remove the sapces if the user enter the data with sapce remove those and give  single line code ).
     const title = req.body.title.replace(/\s+/g, "");
 
-      //console.log(">> TITLE <<" , title);
+    //console.log(">> TITLE <<" , title);
     if (Number(req.body.filesCount) > 2) {
 
       let create_folder_path = 'mkdir ' + requriedNodeModules.path.join(path_directory + user_defined_path_to_store + '/' + title);
