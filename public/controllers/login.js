@@ -63,7 +63,7 @@ mainapp.controller('loginController', ['$scope',
 
 			$http.post('/getEmployeeDetails', { _id: $scope.userName })
 				.success(function (data, status) {
-					//console.log(data);
+					console.log(data);
 					if(data == "0"){
 						$scope.whiznextLoader = false;
 						$scope.loader = false;

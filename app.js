@@ -304,6 +304,7 @@ app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
 
 
 // report Data 
+// change this to query based records in the mongo side 
 app.post('/getUploadData', (req, res) => {
 
   var Date_For_Match = utilities.convertDateToInteger(req.body.date);
@@ -320,7 +321,10 @@ app.post('/getUploadData', (req, res) => {
         let data = [];
         for( let i=0;i<result.length;i++){
           if(result[i].type == "upload"){
-            data.push(result[i]);  
+            if(result[i].date == Date_For_Match){
+              data.push(result[i]);
+            }
+              
           }   
         }
         //console.log('TOTAL_Results', result);

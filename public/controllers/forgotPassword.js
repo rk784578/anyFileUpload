@@ -128,11 +128,10 @@ mainapp.controller('forgotPasswordController', ['$scope',
 						if the data -1 user not exits inthe data base.
 						once user  exits  give true or false status.  
 						*/
-						
+						console.log("<<data>>",data)
 
                           if(data != 0) {
-                          	$scope.Data = data.rows[0].doc;
-                          	console.log(data.rows[0].doc);
+                          	$scope.Data = data;
                           	$scope.validatingExistingUserOrNot = true;
 
                           }else{

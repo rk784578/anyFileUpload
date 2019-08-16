@@ -4,6 +4,6 @@ module.exports = {
     CLOUDANT_DATA_BASE:"uploadanyregisterandlogin",
     LOCAL_HOST:"mongodb://localhost:27017/",
     LOCAL_DATA_BASE: "afts",
-    LOCAL_DATA_BASE_COLLECTION:"ap24*7"
+    LOCAL_DATA_BASE_COLLECTION:"ap24x7"
  
 }
