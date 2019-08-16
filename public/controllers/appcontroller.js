@@ -10,13 +10,10 @@ mainapp.run(['$global', function ($global) {
     $global.setShowlogin(true);
     $global.setAdminlogged(false);
 
+
 }]);
 
-
 mainapp.config(function ($routeProvider,$locationProvider) {
-
-   
-
 
     $routeProvider
         .when('/login', {
@@ -53,7 +50,7 @@ mainapp.config(function ($routeProvider,$locationProvider) {
             })
          .when('/successPath',
             {
-                //controller: 'reportController',
+                controller: 'adminController',
                 templateUrl: '../success.html'
             })
             .when('/website',

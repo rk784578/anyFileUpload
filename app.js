@@ -213,9 +213,9 @@ let storage = requriedNodeModules.multer.diskStorage({
     let ftp_path_to_store;
 
     // stage ENV 
-    let user_defined_path_to_store = 'upload';
+    let user_defined_path_to_store = 'AFTS-MEDIA';
     //  change the path directory here. 
-    let path_directory = "C:/";
+    let path_directory = "D:/";
 
     // production ENV 
     //let user_defined_path_to_store = "//192.168.1.168/ftp1";
@@ -294,7 +294,7 @@ app.post('/upload', upload.array('VideoToUpload', 10), function (req, res) {
       } else {
         if (req.files) {
           console.log(" >>>>>Inside if  Successfully received <<<<<<");
-          res.send({ success: "success" });
+          res.status(201).send({ success: "success" });
           // res.end();  
         }
         console.log("req.body.filesCount >>>>>>>>>>>>>> ", req.body.filesCount);
@@ -309,30 +309,30 @@ app.post('/getUploadData', (req, res) => {
 
   var Date_For_Match = utilities.convertDateToInteger(req.body.date);
 
-  restCalls.getAll(config.LOCAL_HOST,
+  restCalls.fetch(config.LOCAL_HOST,
     config.LOCAL_DATA_BASE,
     config.LOCAL_DATA_BASE_COLLECTION,
-    '',
+    { date: Date_For_Match, type: "upload" },
     (err, result) => {
       if (err) {
         res.send(err);
       } else {
 
-        let data = [];
-        for( let i=0;i<result.length;i++){
-          if(result[i].type == "upload"){
-            if(result[i].date == Date_For_Match){
-              data.push(result[i]);
-            }
-              
-          }   
-        }
+        /*  let data = [];
+          for( let i=0;i<result.length;i++){
+            if(result[i].type == "upload"){
+              if(result[i].date == Date_For_Match){
+                data.push(result[i]);
+              }
+                
+            }   
+          }*/
         //console.log('TOTAL_Results', result);
-        res.send(data);
+        res.send(result);
       }
     })
 
- 
+
 });
 
 // start server on the specified port and binding host

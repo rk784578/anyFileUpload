@@ -91,6 +91,23 @@ REQURIED_NODE_MODULES.MongoClient.connect(url.LOCAL_HOST, function (err, db) {
 });
 }
 
+// fetch query 
+exports.fetch =(url, dataBase, collectionName, jsonData, callback)=>{
+
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db(dataBase);
+        dbo.collection(collectionName).find(jsonData).toArray(function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+            callback(null,results);
+           // console.log(results.length); // output all records
+            db.close();
+        });
+    
+    });
+}
 
 // rest normal call (CLOudant)
 exports.cloudRest = (url, method, data, callback) => {
