@@ -31,20 +31,20 @@ mainapp.controller('reportController', ['$scope',
             $scope.uploadFileName = [];
             $scope.message = "Fetching Data ......";
             $scope.afterData = false;
-             $scope.printButton = true;
+            $scope.printButton = true;
             fetchData(val)
         }
 
         // 
 
 
-    
-      $scope.print = function(printSectionId) {
-          $scope.printButton = false;
-        window.print();
-      }
-   
-  
+
+        $scope.print = function (printSectionId) {
+            $scope.printButton = false;
+            window.print();
+        }
+
+
 
         $scope.upload = [];
         //$scope.uploadFileName = [];
@@ -54,24 +54,17 @@ mainapp.controller('reportController', ['$scope',
             var date = $scope.date;
             $http.post('/getUploadData', { date: $scope.date }).success(function (data) {
 
-                //console.log(data);
-                if(! data.total_rows == 0){
-
-                
-                for (var i = 0; i < data.rows.length; i++) {
-                    $scope.upload.push(data.rows[i].doc);
-                    console.log($scope.upload);
-                  
+                console.log(data.length);
+                if (data.length != 0) {
+                    $scope.upload = data;
+                    $scope.message = "";
+                    $scope.afterData = true;
+                }
+                else {
+                    $scope.message = "Oops! No records are found ";
+                    $scope.afterData = false;
                 }
 
-                $scope.message = "";
-                $scope.afterData = true;
-            }
-            else{
-                $scope.message = "Oops! No records are found ";
-                $scope.afterData = false;
-            }
-                
 
 
 
@@ -81,7 +74,7 @@ mainapp.controller('reportController', ['$scope',
             })
         }
 
-  
+
 
         // Excel  report Download.
         $scope.exportToExcel = function (tableId) { // ex: '#my-table'

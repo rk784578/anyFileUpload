@@ -29,7 +29,8 @@ module.exports ={
     crypto:crypto,
     NodeCouchDb:NodeCouchDb,
     cmd:cmd,
-    fs:fs
+    fs:fs,
+    MongoClient:require('mongodb').MongoClient
        
     //SEOChecker:SEOChecker
 

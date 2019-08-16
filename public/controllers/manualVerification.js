@@ -34,8 +34,6 @@ mainapp.controller('manualVerificationController', ['$scope',
             $scope.dataTable = true;
           }
         }
-
-
       }).error(function (data) {
 
       })
