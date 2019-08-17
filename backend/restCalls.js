@@ -94,7 +94,7 @@ REQURIED_NODE_MODULES.MongoClient.connect(url.LOCAL_HOST, function (err, db) {
 // fetch query 
 exports.fetch =(url, dataBase, collectionName, jsonData, callback)=>{
 
-    MongoClient.connect(url, function (err, db) {
+    REQURIED_NODE_MODULES.MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db(dataBase);
         dbo.collection(collectionName).find(jsonData).toArray(function (err, results) {
