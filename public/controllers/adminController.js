@@ -12,6 +12,4 @@ mainapp.controller('adminController', ['$scope',
         if (!$global.getAdminlogged()) {
             $location.path('/login');
         }
-
-
     }])

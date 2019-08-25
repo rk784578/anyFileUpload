@@ -10,11 +10,11 @@
     <div class="alert alert-success" ng:show="message.length >0" style="padding-top: 30px">
         <strong>{{message}}</strong>
       </div>
-
+<center>
   <div class="col-md-12 col-sm-12" ng:show="dataTable" style="padding-top: 30px">
     <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead class="th">
+      <table class="table fixed">
+        <thead>
           <tr>
             <td>Name</td>
             <td>E-Mail</td>
@@ -22,7 +22,7 @@
             <td>Status</td>
           </tr>
         </thead>
-        <tbody class="tb">
+        <tbody >
           <tr ng:repeat="x in unActivedData track by $index">
             <td>{{x.name}}</td>
             <td>{{x.email}}</td>
@@ -43,6 +43,7 @@
       </table>
     </div>
   </div>
+</center>
 </div>
 <div ng-controller='NavController' class="footernotsite">
     <div ng-include='template.footer'></div>

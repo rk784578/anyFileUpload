@@ -60,7 +60,7 @@ mainapp.config(function ($routeProvider,$locationProvider) {
             })   
             .when('/licenceCheck',
             {
-                //controller: 'reportController',
+                controller: 'exceptionHandleController',
                 templateUrl: '../exceptionHandle.html'
             })     
         .otherwise({

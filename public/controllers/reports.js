@@ -35,7 +35,15 @@ mainapp.controller('reportController', ['$scope',
             fetchData(val)
         }
 
-        // 
+        // refresh 
+        $scope.refresh = () =>{
+            $scope.upload = [];
+            $scope.uploadFileName = [];
+            $scope.message = "Fetching Data ......";
+            $scope.afterData = false;
+            $scope.printButton = true;
+            fetchData($scope.date)
+        }
 
 
 

@@ -309,7 +309,34 @@ input:-webkit-autofill:active  {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #fff !important;
 }
+/* This is for  
+*/
+.button2{
+  background: transparent ;
+  border: #4394d3 1px solid ;
+  text-align: center;
+  text-decoration: none;
+  color:white ;
+  display: inline-block;
+  padding:7px;
+  border-radius: 7px;
+  cursor:pointer;
+  position:relative;
 
+}
+.button2 a {
+  color:#4394d3 ;
+}
+
+.button2 a:hover {
+  color: white !important;
+}
+ .button2:hover{
+  /* background-color: white; */
+  border: white 1px solid;
+
+  color: #4394d3;
+ }
 
 
 

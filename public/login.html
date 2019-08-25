@@ -3,64 +3,70 @@
     <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
       <div class="carousel-inner" role="listbox">
-<div class="item active">
-  <div class="carousel-background"><img src="images/img/intro/1.jpg" alt=""></div>
-  <div class="carousel-container">
-    <div class="row" style="width: 100%;">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-          <div class="form">  
-              <div class="haed">
-                <h1>Login</h1>
-                <div style="margin-top: 30px;">
-                    <i class="fa fa-user-o" aria-hidden="true"></i>
-                </div>
-              </div>
-            
-             <!-- <ul class="tab-group">
+        <div class="item active">
+          <div class="carousel-background"><img src="images/img/intro/1.jpg" alt=""></div>
+          <div class="carousel-container">
+            <div class="row" style="width: 100%;">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="form">
+                  <div class="haed">
+                    <h1>Login</h1>
+                    <div style="margin-top: 30px;">
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </div>
+                  </div>
+
+                  <!-- <ul class="tab-group">
                     <li class="tab"><a href="signUp">Sign Up</a></li>
                     <li class="tab active"><a href="login">Log In</a></li>
                   </ul> -->
-             <form autocomplete="off">
-             <p style="color: red;font-size: 11px;">{{userValidationError}}{{Error}}{{successMessage}} &nbsp;&nbsp; <a ng:click="reSend()" ng:show="resendShow">Re-send Verification Link</a></p>
-             <div class="col-md-12" style="margin-bottom: 20px;">
-              <div class="field">
-                <input type="text" name="email" id="email1" ng-model="userName" ng-change="onSelectUserName()" placeholder=" " required>
-                <label for="email1">Username</label>
-              </div>
-                 <div class="field">
-                <input type="password" name="password" id="password1" ng-model="password" ng-change="onSelectUserName()" placeholder=" " required>
-                <label for="password1">Password</label>
-              </div>
-            </div>
-              
-            
-            <div style="margin-right: 30px;margin-top: 10px;">
-              <p   ><a href="#forgotPasswordPage" class=" pull-left" style="margin-left: -15%;" ng-click="forgotPassword()">Reset Password?</a></p>
-                <button type="submit" value="login" ng-click="login()" class="button1 pull-right" style="margin-top: -5px;">
-                  Log In<img src="./icon/postLoader.gif" ng:show="loader">
-           </button>
-                    <a value="signUp" class="button1 pull-right" href="signUp" style="text-decoration: none;margin: -5px 5px;">Sign Up</a>
-                  
-                
-            
-              </div>
-              <!-- <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p> -->
-            
-                      </form>
-            
+                  <form autocomplete="off">
+                    <p style="color: red;font-size: 11px;">{{userValidationError}}{{Error}}{{successMessage}}
+                      &nbsp;&nbsp; <a ng:click="reSend()" ng:show="resendShow">Re-send Verification Link</a></p>
+                    <div class="col-md-12" style="margin-bottom: 20px;">
+                      <div class="field">
+                        <input type="text" name="email" id="email1" ng-model="userName" ng-change="onSelectUserName()"
+                          placeholder=" " required>
+                        <label for="email1">Username</label>
+                      </div>
+                      <div class="field">
+                        <input type="password" name="password" id="password1" ng-model="password"
+                          ng-change="onSelectUserName()" placeholder=" " required>
+                        <label for="password1">Password</label>
+                      </div>
                     </div>
+
+
+                    <div style="margin-right: 30px;margin-top: 10px;">
+                      <p><a href="#forgotPasswordPage" class=" pull-left" style="margin-left: -15%;"
+                          ng-click="forgotPassword()">Reset Password?</a></p>
+                      <p><button type="submit" value="login" ng-click="login()" class="button2 pull-right"
+                          style="text-decoration: none;margin-top: -5px;">
+                          Log In<img src="./icon/postLoader.gif" ng:show="loader">
+                        </button>
+                      </p>
+                      <a value="signUp" class="button1 pull-right" href="signUp"
+                        style="text-decoration: none;margin: -5px 5px;">Sign Up</a>
+
+
+
+                    </div>
+                    <!-- <p style="text-align: left;" class="forgot" ><a href="signUp">Not a existing user</a></p> -->
+
+                  </form>
+
+                </div>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+
+          </div>
+        </div>
       </div>
-      <div class="col-md-4"></div>
     </div>
-  
   </div>
-</div>
-</div>
-</div>
-</div>
-<div ng-controller='NavController' class="footernotsite">
+  <div ng-controller='NavController' class="footernotsite">
     <div ng-include='template.footer'></div>
   </div>
 </section>
-      
