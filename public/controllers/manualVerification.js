@@ -55,6 +55,20 @@ mainapp.controller('manualVerificationController', ['$scope',
 
     }
 
+     $scope.delete = function (val, $index) {
+  $scope.unActivedData = [];
+     //$scope.unActivedData = val
+      $http.post('/deleteLoginUser', val).success(function (res) {
+       var index = $scope.unActivedData.indexOf(val);
+              $scope.unActivedData.splice(index, 1);
+        console.log(res);
+       
+      }).error(function () {
+
+      });
+
+    }
+
   }
 ]);
 

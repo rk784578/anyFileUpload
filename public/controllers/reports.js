@@ -83,12 +83,19 @@ mainapp.controller('reportController', ['$scope',
         }
 
 
-
-        // Excel  report Download.
+ // Excel  report Download.
         $scope.exportToExcel = function (tableId) { // ex: '#my-table'
             console.log(tableId);
-            var exportHref = Excel.tableToExcel(tableId, 'Upload Report');
-            $timeout(function () { location.href = exportHref; }, 100);
+            var exportHref = Excel.tableToExcel(tableId, 'AFTS_REPORT.xls');
+            // $timeout(function () { location.href = exportHref; }, 100);
+            $timeout(function(){
+           var a = document.createElement('a');
+            a.href=exportHref;
+            a.download = "AFTS_REPORT.xls";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        },100);
             // trigger
             // download
         };

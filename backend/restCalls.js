@@ -79,11 +79,11 @@ exports.updateData = (url, dataBase, collectionName, jsonData, callback) => {
 
 // Delete
 exports.deleteRecord = (url, dataBase, collectionName, jsonData, callback)=>{
-REQURIED_NODE_MODULES.MongoClient.connect(url.LOCAL_HOST, function (err, db) {
+REQURIED_NODE_MODULES.MongoClient.connect(url, function (err, db) {
     if (err) throw err;
-    var dbo = db.db(url.LOCAL_DATA_BASE);
-    var myquery = { address: "node developer 37" };
-    dbo.collection(url.LOCAL_DATA_BASE_COLLECTION).deleteOne(myquery, function (err, obj) {
+    var dbo = db.db(dataBase);
+    var myquery = { _id: jsonData._id };
+    dbo.collection(collectionName).deleteOne(myquery, function (err, obj) {
         if (err) throw err;
         console.log("1 document deleted");
         db.close();

@@ -177,6 +177,25 @@ app.post('/updateLoginUser', (req, res) => {
     });
 });
 
+// delete the loagin user from super admin/1
+app.post('/deleteLoginUser', (req, res) => {
+
+   console.log(req.body);
+  restCalls.deleteRecord(config.LOCAL_HOST,
+    config.LOCAL_DATA_BASE,
+    config.LOCAL_DATA_BASE_COLLECTION,
+    req.body,
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        console.log("delete", result);
+        res.status(200).send('Deleted');
+      }
+
+    });
+});
+
 //File Upload
 
 function fileFilter(req, file, cb) {

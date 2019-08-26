@@ -10,20 +10,22 @@
     <div class="alert alert-success" ng:show="message.length >0" style="padding-top: 30px">
         <strong>{{message}}</strong>
       </div>
-<center>
-  <div class="col-md-12 col-sm-12" ng:show="dataTable" style="padding-top: 30px">
+ <div class="col-md-12 col-sm-12" ng:show="dataTable" style="padding-top: 30px">
     <div class="table-responsive">
-      <table class="table table-border fixed" >
+      <table class="table table-bordered">
         <thead class="th">
           <tr>
+            <td>S.No</td>
             <td>Name</td>
             <td>E-Mail</td>
             <td>M.Number</td>
             <td>Status</td>
+            <td>Delete</td>
           </tr>
         </thead>
-        <tbody class="th">
+        <tbody class="tb">
           <tr ng:repeat="x in unActivedData track by $index">
+            <td>{{$index+1}}</td>
             <td>{{x.name}}</td>
             <td>{{x.email}}</td>
             <td>{{x.mobileNumber}}</td>
@@ -35,6 +37,9 @@
                 <button type="button" style="background: transparent !important;color: white" class="btn btn-default deactiveButton" style="background: #ef402f;" ng:click="activateOrDiactivate(x,$index)"><i class="fa fa-user-times" aria-hidden="true"></i></button>
               </span>
             </td>
+            <td>
+            <button class="glyphicon glyphicon-trash" ng-click="delete(x,$index)"></button>
+            </td>
             <!-- <td>
               <button class="glyphicon glyphicon-pencil" type="button" ng:click="activate(x,$index)"></button>
             </td> -->
@@ -43,7 +48,6 @@
       </table>
     </div>
   </div>
-</center>
 </div>
 <div ng-controller='NavController' class="footernotsite">
     <div ng-include='template.footer'></div>

@@ -20,7 +20,7 @@
 		"nodemon": "x.x.x",
 		"request": "^2.88.0",
 		"xlsx": "x.x.x",
-		"mongodb":"x.x.x"
+		"mongodb": "x.x.x"
 	},
 	"repository": {},
 	"engines": {
