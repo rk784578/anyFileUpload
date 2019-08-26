@@ -48,7 +48,7 @@ mainapp.controller('reportController', ['$scope',
 
 
         $scope.print = function (printSectionId) {
-            $scope.printButton = false;
+            $scope.printButton = true;
             window.print();
         }
 
