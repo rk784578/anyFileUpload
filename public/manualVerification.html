@@ -13,8 +13,8 @@
 <center>
   <div class="col-md-12 col-sm-12" ng:show="dataTable" style="padding-top: 30px">
     <div class="table-responsive">
-      <table class="table fixed">
-        <thead>
+      <table class="table table-border fixed" >
+        <thead class="th">
           <tr>
             <td>Name</td>
             <td>E-Mail</td>
@@ -22,7 +22,7 @@
             <td>Status</td>
           </tr>
         </thead>
-        <tbody >
+        <tbody class="th">
           <tr ng:repeat="x in unActivedData track by $index">
             <td>{{x.name}}</td>
             <td>{{x.email}}</td>
