@@ -10,7 +10,7 @@
   .fixed td {
     padding: 5px;
     text-align: left;
-    min-width: 330px;
+    min-width: 200px;
   }
   .fixed thead tr {
     display: block;
@@ -20,7 +20,7 @@
     display: block;
     overflow: auto;
     width: 100%;
-    height: 350px;
+    height: 320px;
     overflow-y: scroll;
       overflow-x: hidden;
   }
