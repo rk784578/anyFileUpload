@@ -18,7 +18,7 @@ mainapp.controller('welcomeController', ['$scope',
         // fetching the data after user login to the  application and storing in to the db 
         $scope.loginData = $global.getuserData();
 
-    $scope.data = {
+        $scope.data = {
             district: $scope.loginData.districtCategory,
             name: $scope.loginData.fullName,
             mobileNumber: $scope.loginData.mobileNumber,
@@ -32,8 +32,8 @@ mainapp.controller('welcomeController', ['$scope',
 
         console.log($scope.data);
 
-           // refrence  : we use this https://www.encodedna.com/angularjs/tutorial/angularjs-multiple-file-upload-example-with-webapi.htm
-           // for the  code /  status bar 
+        // refrence  : we use this https://www.encodedna.com/angularjs/tutorial/angularjs-multiple-file-upload-example-with-webapi.htm
+        // for the  code /  status bar 
 
         // hold  multiples if user need more than one 
         // GET THE FILE INFORMATION.
@@ -57,22 +57,22 @@ mainapp.controller('welcomeController', ['$scope',
         $scope.sendDataTotheBackend = () => {
 
 
-    
+            $scope.loadder = true;
 
 
 
             let payload = new FormData();
-            console.log( "<< how many files are uplaoded >>", $scope.files.length);
+            console.log("<< how many files are uplaoded >>", $scope.files.length);
             payload.append("title", $scope.data.subject);
-            payload.append("filesCount" ,$scope.files.length);
-            payload.append("district" ,$scope.data.district);
-            payload.append("name" ,$scope.data.name);
-            payload.append("mobileNumber" ,$scope.data.mobileNumber);
-            payload.append("designation" ,$scope.data.designation);
-            payload.append("empID" ,$scope.data.empID);
-            payload.append("email" ,$scope.data.email);
-            payload.append("profile" ,$scope.data.profile);
-            payload.append("message" ,$scope.data.message);
+            payload.append("filesCount", $scope.files.length);
+            payload.append("district", $scope.data.district);
+            payload.append("name", $scope.data.name);
+            payload.append("mobileNumber", $scope.data.mobileNumber);
+            payload.append("designation", $scope.data.designation);
+            payload.append("empID", $scope.data.empID);
+            payload.append("email", $scope.data.email);
+            payload.append("profile", $scope.data.profile);
+            payload.append("message", $scope.data.message);
 
 
             // iterating the data for multiple files 
@@ -90,11 +90,12 @@ mainapp.controller('welcomeController', ['$scope',
                 //prevents serializing payload.  don't do it. 
                 transformRequest: angular.identity
             }).success(function (res) {
-                if( res.success == "success") {
+                if (res.success == "success") {
                     console.log('upload res', res);
-                     $location.path('/successPath')
-                } 
-                
+                    $scope.loadder = false;
+                    $location.path('/successPath')
+                }
+
             }).error(function (err) {
                 console.log(err);
             });
