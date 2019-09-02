@@ -13,16 +13,25 @@ mainapp.controller('manualVerificationController', ['$scope',
 
     if (!$global.getAdminlogged()) {
       $location.path('/login');
-  }
+    }
 
 
     signUpActivation();
 
-    $scope.unActivedData = [];
-    $scope.uploadData = [];
+    
     function signUpActivation() {
-      //$scope.message = "Fetching Data ........"
+      $scope.message = "Fetching Data ........";
+      // when the funcation call 
+      // each time data will be the  empty up and rest that 
+
+      $scope.unActivedData = [];
+      $scope.uploadData = [];
+
+
       $http.post('/getUnactivatedData').success(function (data) {
+
+        if(data.length !== 0){
+        
         //console.log(data);
         for (var i = 0; i < data.length; i++) {
           if (data[i].type == "upload") {
@@ -30,10 +39,14 @@ mainapp.controller('manualVerificationController', ['$scope',
             //console.log("####", $scope.uploadData);
           } else {
             $scope.unActivedData.push(data[i]);
-            $scope.message = "" ;
+            $scope.message = "";
             $scope.dataTable = true;
           }
         }
+      }else{
+        $scope.message = " Oops! no records are found.  ";
+        $scope.dataTable = false;
+      }
       }).error(function (data) {
 
       })
@@ -42,27 +55,37 @@ mainapp.controller('manualVerificationController', ['$scope',
 
     $scope.activateOrDiactivate = function (val, $index) {
 
-      $scope.message ="";
+    
       val.state = (val.state == 'inActive') ? 'active' : 'inActive';
-     // console.log(val);
+      $scope.message = "Updating the "+  val.name +" data to " + val.state;
+      //console.log(val);
 
       $http.post('/updateLoginUser', val).success(function (res) {
-       //$scope.message = res + '..............';
-        console.log(res);
+        $scope.message = res;
+        //console.log(res);
       }).error(function () {
 
       });
 
     }
+    
+    /**
+     * Delete the  record 
+     */
+    $scope.delete = function (val, $index) {
+     
+      $scope.message = " Kindly Wait deleting the User "  + val.name 
+      $scope.dataTable = false;
 
-     $scope.delete = function (val, $index) {
-  $scope.unActivedData = [];
-     //$scope.unActivedData = val
+      //console.log(">> delete value << " , val);
+      //$scope.unActivedData = val
       $http.post('/deleteLoginUser', val).success(function (res) {
-       var index = $scope.unActivedData.indexOf(val);
-              $scope.unActivedData.splice(index, 1);
-        console.log(res);
-       
+        //var index = $scope.unActivedData.indexOf(val);
+        //$scope.unActivedData.splice(index, 1);
+        console.log( "Inside the function",res);
+        signUpActivation();
+
+
       }).error(function () {
 
       });

@@ -44,7 +44,7 @@ exports.getAll = (url, dataBase, collectionName, jsonData, callback) => {
             // If the item is null then the cursor is exhausted/empty and closed
             if (item == null) {
                 db.close();
-               // console.log("NO RECORDS FOUND");
+                // console.log("NO RECORDS FOUND");
                 callback(null, rows);
                 // return;
             }
@@ -70,7 +70,7 @@ exports.updateData = (url, dataBase, collectionName, jsonData, callback) => {
         dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, res) {
             if (err) throw err;
             //console.log("1 document updated",res);
-            callback(null,"1")
+            callback(null, "1")
             db.close();
         });
     });
@@ -78,21 +78,28 @@ exports.updateData = (url, dataBase, collectionName, jsonData, callback) => {
 
 
 // Delete
-exports.deleteRecord = (url, dataBase, collectionName, jsonData, callback)=>{
-REQURIED_NODE_MODULES.MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
-    var dbo = db.db(dataBase);
-    var myquery = { _id: jsonData._id };
-    dbo.collection(collectionName).deleteOne(myquery, function (err, obj) {
+exports.deleteRecord = (url, dataBase, collectionName, jsonData, callback) => {
+    //console.log(">> delete Data <<" , jsonData)
+    console.log(">> only id <<", jsonData._id)
+
+    REQURIED_NODE_MODULES.MongoClient.connect(url, function (err, db) {
         if (err) throw err;
-        console.log("1 document deleted");
-        db.close();
+        var dbo = db.db(dataBase);
+        var myquery = { _id: jsonData._id };
+        dbo.collection(collectionName).deleteOne(myquery, function (err, obj) {
+            if (err) {
+                callback(null, "0");
+            } else {
+                callback(null, "1");
+                console.log("1 document deleted");
+            }
+            db.close();
+        });
     });
-});
 }
 
 // fetch query 
-exports.fetch =(url, dataBase, collectionName, jsonData, callback)=>{
+exports.fetch = (url, dataBase, collectionName, jsonData, callback) => {
 
     REQURIED_NODE_MODULES.MongoClient.connect(url, function (err, db) {
         if (err) throw err;
@@ -101,11 +108,11 @@ exports.fetch =(url, dataBase, collectionName, jsonData, callback)=>{
             if (err) {
                 console.log(err);
             }
-            callback(null,results);
-           // console.log(results.length); // output all records
+            callback(null, results);
+            // console.log(results.length); // output all records
             db.close();
         });
-    
+
     });
 }
 

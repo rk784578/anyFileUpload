@@ -180,7 +180,6 @@ app.post('/updateLoginUser', (req, res) => {
 // delete the loagin user from super admin/1
 app.post('/deleteLoginUser', (req, res) => {
 
-   console.log(req.body);
   restCalls.deleteRecord(config.LOCAL_HOST,
     config.LOCAL_DATA_BASE,
     config.LOCAL_DATA_BASE_COLLECTION,
@@ -190,7 +189,7 @@ app.post('/deleteLoginUser', (req, res) => {
         res.send(err);
       } else {
         console.log("delete", result);
-        res.status(200).send('Deleted');
+        res.status(200).send(result);
       }
 
     });
