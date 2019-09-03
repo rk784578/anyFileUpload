@@ -68,6 +68,7 @@ mainapp.controller('signUpController', ['$scope',
                 console.log('submit function callled.');
                 // save the user in the DB  if exitsing  it wnt save the data 
                 // this function will check the whether the user existing or not. 
+                $scope.loadder = true;
                 fetchExistingOrNewUser();
 
             }

@@ -1,5 +1,5 @@
 .fixed {
-    width:350px;
+    width:50px;
     table-layout: fixed;
     border-collapse: collapse;
   }
@@ -10,7 +10,7 @@
   .fixed td {
     padding: 5px;
     text-align: left;
-    min-width: 200px;
+    min-width: auto;
   }
   .fixed thead tr {
     display: block;
