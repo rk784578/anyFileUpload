@@ -56,11 +56,6 @@ mainapp.controller('welcomeController', ['$scope',
 
         $scope.sendDataTotheBackend = () => {
 
-
-            $scope.loadder = true;
-
-
-
             let payload = new FormData();
             console.log("<< how many files are uplaoded >>", $scope.files.length);
             payload.append("title", $scope.data.subject);
@@ -73,35 +68,46 @@ mainapp.controller('welcomeController', ['$scope',
             payload.append("email", $scope.data.email);
             payload.append("profile", $scope.data.profile);
             payload.append("message", $scope.data.message);
-
+          
 
             // iterating the data for multiple files 
             for (var i in $scope.files) {
                 payload.append("VideoToUpload", $scope.files[i]);
             }
 
-            $http.post("/upload", payload, {
-                //assign content-type as undefined, the browser
-                //will assign the correct boundary for us
+            var xhr = new XMLHttpRequest();
 
-                headers: {
-                    'Content-Type': undefined
-                },
-                //prevents serializing payload.  don't do it. 
-                transformRequest: angular.identity
-            }).success(function (res) {
-                if (res.success == "success") {
-                    console.log('upload res', res);
-                    $scope.loadder = false;
-                    $location.path('/successPath')
+            // your url upload
+            xhr.open('post', '/upload', true);
+
+            xhr.upload.onprogress = function (e) {
+
+                if (e.lengthComputable) {
+                    let percentage = Math.round((e.loaded / e.total) * 100);
+               console.log( percentage)
+
                 }
+            };
 
-            }).error(function (err) {
-                console.log(err);
-            });
+            xhr.onerror = function (e) {
+                console.log('Error');
+                console.log(e);
+            };
+            xhr.onload = function () {
+                console.log(this.statusText);
+                test( this.statusText);
+               
+
+            };
+            xhr.send(payload);
         }
 
-        $timeout(function () { $location.path('/login') }, 500000)
+        // $timeout(function () { $location.path('/login') }, 500000)
+
+         function test(val){
+             alert( "Uplaoded")
+            $location.path('/successPath');
+        }
 
     }
 ]);
