@@ -83,6 +83,7 @@ mainapp.controller('welcomeController', ['$scope',
             xhr.upload.onprogress = function (e) {
 
                 if (e.lengthComputable) {
+                    // need to display the data in the UI  with on progesss 
                     let percentage = Math.round((e.loaded / e.total) * 100);
                console.log( percentage)
 
@@ -94,12 +95,34 @@ mainapp.controller('welcomeController', ['$scope',
                 console.log(e);
             };
             xhr.onload = function () {
+                // once done that just redirect  to the this  success page 
                 console.log(this.statusText);
                 test( this.statusText);
                
 
             };
             xhr.send(payload);
+
+            ///////////////////////////////////////////////////// old code /////////////////////////////////////
+           /**  $http.post("/upload", payload, {
+                //assign content-type as undefined, the browser
+                //will assign the correct boundary for us
+
+                headers: {
+                    'Content-Type': undefined
+                },
+                //prevents serializing payload.  don't do it. 
+                transformRequest: angular.identity
+            }).success(function (res) {
+                if (res.success == "success") {
+                    console.log('upload res', res);
+                    $scope.loadder = false;
+                    $location.path('/successPath')
+                }
+
+            }).error(function (err) {
+                console.log(err);
+            });*/
         }
 
         // $timeout(function () { $location.path('/login') }, 500000)
